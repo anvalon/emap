@@ -23,6 +23,7 @@
 
             /* Stile Risultati */
             .risultato { background: white; padding: 15px; border-left: 5px solid #4CAF50; margin-bottom: 10px; border-radius: 4px; }
+			.invalido { border-left: 5px solid #dc2626; font-style: italic }
             .scomposizione:not(:last-child) { margin-bottom: 1em; }
             .esempio-titolo { margin-top: 30px; font-weight: bold; color: #666; border-bottom: 1px solid #ddd; }
             .footer-info { font-size: 0.8em; color: #777; margin-top: 10px; }
@@ -63,7 +64,7 @@
             <h1>Esperanta Morfanalizilo (Prolog-Versio 1.0)</h1>
 
             <form method="POST" action="" class="search-box">
-                <input type="text" name="parola" placeholder="Enigu vorton (ekz.: malsanulejon)" value="<?php echo htmlspecialchars($testo_da_analizzare ?? '', ENT_QUOTES, 'UTF-8') ?>">
+				<textarea name="parola" placeholder="Enigu tekston (ekz.: malsanulejon)..."><?php echo htmlspecialchars($testo_da_analizzare ?? '', ENT_QUOTES, 'UTF-8') ?></textarea>
                 <button type="submit">Analizi</button>
             </form>
 
