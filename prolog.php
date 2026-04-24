@@ -6,7 +6,7 @@
 
 function prolog_analyze($word) {
 
-    $tag_descriptions = [
+$tag_descriptions = [
         'pre' => 'prefikso',
         'suf' => 'sufikso',
         'rad' => 'radiko',
@@ -15,10 +15,15 @@ function prolog_analyze($word) {
         'adv' => 'adverbo',
         'adj' => 'adjektivo',
         'sub' => 'nomo',
-        'vrb' => 'verbo'
+        'inf' => 'infinitivo',
+        'pzn' => 'prezenco',
+        'prt' => 'preterito',
+        'fut' => 'futuro',
+        'kon' => 'kondicionalo',
+        'vol' => 'volitivo',
     ];
 
-    $class_map = [
+$class_map = [
         'pre' => 'prefikso',
         'suf' => 'sufikso',
         'rad' => 'radiko',
@@ -27,7 +32,12 @@ function prolog_analyze($word) {
         'sub' => 'finaĵo',
         'adj' => 'finaĵo',
         'adv' => 'finaĵo',
-        'vrb' => 'finaĵo'
+        'inf' => 'finaĵo',
+        'pzn' => 'finaĵo',
+        'prt' => 'finaĵo',
+        'fut' => 'finaĵo',
+        'kon' => 'finaĵo',
+        'vol' => 'finaĵo'
     ];
 
     if (empty($word)) return null;
@@ -72,10 +82,7 @@ function prolog_analyze($word) {
                 // Qui usiamo $tag_descriptions per mostrare la parola intera
                 $full_tag_name = $tag_descriptions[$tag] ?? $tag;
 
-                $html_output .= "<span class='morfemo $css_class'>" 
-                             . htmlspecialchars($text) 
-                             . "<span class='etikedo'>" . htmlspecialchars($full_tag_name) . "</span>"
-                             . "</span>";
+                $html_output .= "<span class='morfemo $css_class'>" . htmlspecialchars($text) . "<span class='etikedo'>" . htmlspecialchars($full_tag_name) . "</span></span>";
             }
         }        
         $html_output .= "</div>";

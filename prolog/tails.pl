@@ -6,60 +6,52 @@
 %              including plural and accusative markers.
 % -----------------------------------------------------------------
 
-% --- Basic Verbal Endings (Tense and Mood) ---
-verbal_ending([i]).    % Infinitive
-verbal_ending([a,s]).  % Present
-verbal_ending([i,s]).  % Past
-verbal_ending([o,s]).  % Future
-verbal_ending([u,s]).  % Conditional
-verbal_ending([u]).    % Volitive/Imperative
+% --- Unified definition of grammatical endings ---
+% ending(Characters, Tag)
+ending([i],   inf). % Infinitive
+ending([a,s], pzn). % Present (pzn)
+ending([i,s], prt). % Past/Preterite (prt)
+ending([o,s], fut). % Future
+ending([u,s], kon). % Conditional (kon)
+ending([u],   vol). % Volitive/Imperative
+ending([o],   sub). % Noun (substantivo)
+ending([a],   adj). % Adjective
+ending([e],   adv). % Adverb
 
-% --- Standard Part-of-Speech Endings ---
-nominal_ending([o]).     % Noun (substantivo)
-adjectival_ending([a]).  % Adjective (adjektivo)
-adverbal_ending([e]).    % Adverb (adverbo)
-
-% --- Plural and Accusative markers ---
-plural([j]).
-accusative([n]).
+% --- Final markers ---
+% final(Characters, Tag)
+final([j], plu). % Plural
+final([n], aku). % Accusative
 
 % -----------------------------------------------------------------
 % tail/2: Validates the ending and assigns grammatical tags
-% tail(+EndingChars, -TaggedList)
 % -----------------------------------------------------------------
 
-% Case 1: Purely verbal endings (vrb)
-tail(T, [[T, vrb]]) :- verbal_ending(T).
+% Case 1: Verbal endings (inf, pzn, prt, etc.)
+% These do not accept plural or accusative markers in Esperanto
+tail(T, [[T, Tag]]) :- 
+    ending(T, Tag), 
+    member(Tag, [inf, pzn, prt, fut, kon, vol]).
 
-% Case 2: Noun endings (sub) with optional plural and accusative
-tail(T, [[N, sub]|Rest]) :-        
-    nominal_ending(N),
-    append(N, Rem, T),
-    final_j_n(Rem, Rest).
+% Case 2: Nouns and Adjectives (accept optional -j and -n)
+tail(T, [[Chars, Tag]|Rest]) :-        
+    ending(Chars, Tag),
+    member(Tag, [sub, adj]),
+    append(Chars, Rem, T),
+    check_final_jn(Rem, Rest).
 
-% Case 3: Adjective endings (adj) with optional plural and accusative
-tail(T, [[A, adj]|Rest]) :-        
-    adjectival_ending(A),
-    append(A, Rem, T),
-    final_j_n(Rem, Rest).
+% Case 3: Adverbs (accept optional -n for direction)
+tail(T, [[Chars, Tag]|Rest]) :-        
+    ending(Chars, Tag),
+    Tag == adv,
+    append(Chars, Rem, T),
+    check_final_n(Rem, Rest).
 
-% Case 4: Adverb endings (adv) with optional accusative for direction
-% Plurals are not allowed for adverbs (e.g., -ejn is invalid).
-tail(T, [[E, adv]|Rest]) :-        
-    adverbal_ending(E),
-    append(E, Rem, T),
-    final_n(Rem, Rest).
+% --- Helpers to handle final combinations (-j, -n, -jn) ---
+check_final_jn([], []).
+check_final_jn([j], [[[j], plu]]) :- !.
+check_final_jn([n], [[[n], aku]]) :- !.
+check_final_jn([j, n], [[[j], plu], [[n], aku]]) :- !.
 
-% -----------------------------------------------------------------
-% final_n/2: Handles the optional accusative marker (aku)
-% -----------------------------------------------------------------
-final_n([], []).
-final_n([n], [[[n], aku]]) :- !.
-
-% -----------------------------------------------------------------
-% final_j_n/2: Handles plural (plu) and/or accusative (aku) markers
-% -----------------------------------------------------------------
-final_j_n([], []).
-final_j_n([j], [[[j], plu]]) :- !.
-final_j_n([n], [[[n], aku]]) :- !.
-final_j_n([j, n], [[[j], plu], [[n], aku]]) :- !.
+check_final_n([], []).
+check_final_n([n], [[[n], aku]]) :- !.
