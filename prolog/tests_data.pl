@@ -22,6 +22,7 @@ test_case(info, "NOUNS & INFLECTIONS", _).
 test_case(pos, "domoj", 'dom-o-j').
 test_case(pos, "domojn", 'dom-o-j-n').
 test_case(pos, "domon", 'dom-o-n').
+test_case(pos, "katojn", 'kat-o-j-n').
 test_case(pos, "interpreto", 'interpret-o').
 test_case(pos, "komento", 'koment-o').
 test_case(pos, "telefono", 'telefon-o').
