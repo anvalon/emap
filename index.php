@@ -11,9 +11,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Esperanta Morfanalizilo (Prolog-Versio 1.0)</title>
         <style>
-            body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 20px auto; padding: 0 15px; color: #333; }
+            body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0px auto; padding: 0 15px; color: #333; }
             .container { background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-            h1 { color: #2e7d32; }
+            h1 { color: #2e7d32; margin-top: 0 }
 
             /* Stile del Form */
             .search-box { display: flex; gap: 10px; margin-bottom: 15px; }
@@ -64,7 +64,7 @@
             <h1>Esperanta Morfanalizilo (Prolog-Versio 1.0)</h1>
 
             <form method="POST" action="" class="search-box">
-				<textarea name="parola" placeholder="Enigu tekston (ekz.: malsanulejon)..."><?php echo htmlspecialchars($testo_da_analizzare ?? '', ENT_QUOTES, 'UTF-8') ?></textarea>
+				<textarea name="parola" placeholder="Enigu tekston (ekz.: malsanulejon)..."><?php echo htmlspecialchars($testo_da_analizzare) ?></textarea>
                 <button type="submit">Analizi</button>
             </form>
 
@@ -89,7 +89,7 @@
                     
                     <div class="esempio-titolo">Ekzemploj:</div>
                     <?php 
-                        $test = array('malsanulejon', 'belegaj', 'malametaj', 'remanĝetegindas', 'praulinon', 'plenumita');
+                        $test = ['malsanulejon', 'belegaj', 'malametaj', 'remanĝetegindas', 'plenumita'];
                         foreach ($test as $t) {
                             echo "<div class='risultato'>";
                             echo "<div class='descrizione'>" . htmlspecialchars($t) . "</div>";
