@@ -53,4 +53,4 @@ check_jn([j, n], [[[j], T1], [[n], T2]]) :-
     ending([n], T2), !.
 
 check_n([], []).
-check_n([n], [[[n], Tag]]) :- ending([n], Tag), !.
+check_n([n], [[[n], Tag]]) :- ending([n], Tag), !.  
