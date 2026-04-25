@@ -16,6 +16,7 @@ estr
 et
 id
 ig
+iĝ
 il
 in
 ind
@@ -24,8 +25,6 @@ int
 ism
 ist
 it
-iĝ
-nj
 obl
 on
 ont
@@ -34,4 +33,3 @@ ot
 uj
 ul
 um
-ĉj
