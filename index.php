@@ -50,11 +50,8 @@
             .morfemo.prefikso	{ background-color: #fef3c7; border-color: #f59e0b; color: #92400e; } /* Giallo miele */
             .morfemo.radiko		{ background-color: #dcfce7; border-color: #22c55e; color: #166534; } /* Verde salvia */
             .morfemo.sufikso	{ background-color: #dbeafe; border-color: #3b82f6; color: #1e40af; } /* Blu pastello */
-            .morfemo.participo	{ background-color: #f3e8ff; border-color: #a855f7; color: #6b21a8; } /* Viola lavanda */
-            .morfemo.pluralo	{ background-color: #fee2e2; border-color: #ef4444; color: #991b1b; } /* Rosso rosa */
             .morfemo.finaĵo		{ background-color: #fecaca; border-color: #dc2626; color: #7f1d1d; } /* Rosso profondo */
-            .morfemo.disigilo	{ background-color: #cffafe; border-color: #06b6d4; color: #155e75; } /* Ciano-turchese */
-            .morfemo.akuzativo	{ background-color: #ffedd5; border-color: #f97316; color: #9a3412; } /* Arancio tenue */
+
             .etikedo			{ display: block; font-size: 0.70em; opacity: 0.7; }
   		  </style>
     </head>
