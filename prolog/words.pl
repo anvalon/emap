@@ -15,6 +15,10 @@
 % - word_head = free_extended | correlative_extended | bound_extended
 % -----------------------------------------------------------------
 
+% --- External Dependencies Declarations ---
+% These declarations prevent "undefined procedure" errors during compilation
+:- discontiguous bound_extended/2. % Inform Prolog that bound_extended/2 is defined elsewhere
+
 % Main predicate to validate and segment a word.
 % Now strictly focused on the morphological definition.
 word(CharList, Sols) :-
