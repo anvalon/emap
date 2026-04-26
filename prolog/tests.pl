@@ -5,15 +5,11 @@
 %              Automates validation by comparing actual segments 
 %              with expected results. Handles dynamic alignment.
 % -----------------------------------------------------------------
-
-:- [main].
-:- [tests_data].
+:- ensure_loaded(main).        % Load logic only if needed
+:- ensure_loaded(tests_data).  % Load test cases only if needed
 
 % --- Test Engine Entry Points ---
-
-run_tests :- 
-    run_tests(all).
-
+run_tests :- run_tests(all).
 run_tests(Visibility) :-
     format('~n--- Starting Tests (Morpheme comparison) ---~n', []),
     findall(t(Mode, In, Exp), test_case(Mode, In, Exp), AllTests),
