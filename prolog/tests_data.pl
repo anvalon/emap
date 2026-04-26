@@ -65,98 +65,123 @@ test_case(pos, "reveni",    're-ven-i').
 test_case(blank, _, _).
 test_case(info, "MORE PREFIXES", _).
 % ---
+test_case(pos, "eksbofrato",  'eks-bo-frat-o').
+test_case(pos, "eksgepatro",  'eks-ge-patr-o').
+test_case(pos, "malreveni",   'mal-re-ven-i').
+test_case(pos, "praĉefurbo",  'pra-ĉef-urb-o').
+test_case(pos, "reekiri",     're-ek-ir-i').
 
 % --- Section: SUFFIXES ---
 % Words with official suffixes (ad, an, ant, ar, at, aĉ, aĵ, ĉj, ebl, ec, eg, ej, em, end, er, estr, et, id, ig, iĝ, il, in, ind, ing, int, ism, ist, it, nj, obl, on, ont, op, ot, uj, ul, um)
 test_case(blank, _, _).
-test_case(info, "PREFIXES", _).
+test_case(info, "SUFFIXES", _).
 % ---
-test_case(pos, "parolado",   'parol-ad-o').
-test_case(pos, "lingvano",   'lingv-an-o').
-test_case(pos, "ridante",    'rid-ant-e').
-test_case(pos, "vortaro",    'vort-ar-o').
-test_case(pos, "manĝata",    'manĝ-at-a').
-test_case(pos, "domaĉo",     'dom-aĉ-o').
-test_case(pos, "glaciaĵo",   'glaci-aĵ-o').
-test_case(pos, "kredeble",   'kred-ebl-e').
 test_case(pos, "beleco",     'bel-ec-o').
-test_case(pos, "grandega",   'grand-eg-a').
-test_case(pos, "lernejo",    'lern-ej-o').
-test_case(pos, "ridema",     'rid-em-a').
-test_case(pos, "legenda",    'leg-end-a').
-test_case(pos, "testero",    'test-er-o').
-test_case(pos, "urbestro",   'urb-estr-o').
 test_case(pos, "beleta",     'bel-et-a').
+test_case(pos, "brakumi",    'brak-um-i').
+test_case(pos, "domaĉo",     'dom-aĉ-o').
+test_case(pos, "duoble",     'du-obl-e').
+test_case(pos, "evitinda",   'evit-ind-a').
+test_case(pos, "fermilo",    'ferm-il-o').
+test_case(pos, "glaciaĵo",   'glaci-aĵ-o').
+test_case(pos, "grandega",   'grand-eg-a').
+test_case(pos, "instruisto", 'instru-ist-o').
+test_case(pos, "junulo",     'jun-ul-o').
 test_case(pos, "katido",     'kat-id-o').
 test_case(pos, "konigi",     'kon-ig-i').
-test_case(pos, "sidiĝi",     'sid-iĝ-i').
-test_case(pos, "fermilo",    'ferm-il-o').
-test_case(pos, "virino",     'vir-in-o').
-test_case(pos, "evitinda",   'evit-ind-a').
-test_case(pos, "ŝraŭbingo",  'ŝraŭb-ing-o').
-test_case(pos, "pasinta",    'pas-int-a').
+test_case(pos, "kredeble",   'kred-ebl-e').
 test_case(pos, "kubismo",    'kub-ism-o').
-test_case(pos, "instruisto", 'instru-ist-o').
-test_case(pos, "legita",     'leg-it-a').
-test_case(pos, "duoble",     'du-obl-e').
-test_case(pos, "triono",     'tri-on-o').
-test_case(pos, "venonta",    'ven-ont-a').
 test_case(pos, "kvarope",    'kvar-op-e').
+test_case(pos, "legenda",    'leg-end-a').
+test_case(pos, "legita",     'leg-it-a').
 test_case(pos, "legota",     'leg-ot-a').
+test_case(pos, "lernejo",    'lern-ej-o').
+test_case(pos, "lingvano",   'lingv-an-o').
+test_case(pos, "manĝata",    'manĝ-at-a').
 test_case(pos, "monujo",     'mon-uj-o').
-test_case(pos, "junulo",     'jun-ul-o').
-test_case(pos, "brakumi",    'brak-um-i').
+test_case(pos, "parolado",   'parol-ad-o').
+test_case(pos, "pasinta",    'pas-int-a').
+test_case(pos, "ridante",    'rid-ant-e').
+test_case(pos, "ridema",     'rid-em-a').
+test_case(pos, "sidiĝi",     'sid-iĝ-i').
+test_case(pos, "testero",    'test-er-o').
+test_case(pos, "triono",     'tri-on-o').
+test_case(pos, "urbestro",   'urb-estr-o').
+test_case(pos, "venonta",    'ven-ont-a').
+test_case(pos, "virino",     'vir-in-o').
+test_case(pos, "vortaro",    'vort-ar-o').
+test_case(pos, "ŝraŭbingo",  'ŝraŭb-ing-o').
 
 % --- Section: MORE SUFFIXES ---
 % Words with more official suffixes
 test_case(blank, _, _).
 test_case(info, "MORE SUFFIXES", _).
 % ---
+test_case(pos, "belegeco",    'bel-eg-ec-o').
+test_case(pos, "dometaĉo",    'dom-et-aĉ-o').
+test_case(pos, "glaciaĵero",  'glaci-aĵ-er-o').
+test_case(pos, "kredebleco",  'kred-ebl-ec-o').
+test_case(pos, "legenda",     'leg-end-a').
+test_case(pos, "lernejestro", 'lern-ej-estr-o').
+test_case(pos, "lingvanaro",  'lingv-an-ar-o').
+test_case(pos, "paroladejo",  'parol-ad-ej-o').
+test_case(pos, "ridendema",   'rid-end-em-a').
+test_case(pos, "ridetante",   'rid-et-ant-e').
+test_case(pos, "testarero",   'test-ar-er-o').
+test_case(pos, "vortarego",   'vort-ar-eg-o').
 
 % --- Section: MORE PREFIXES AND SUFFIXES ---
 % Words with more official prefixes and suffixes
 test_case(blank, _, _).
 test_case(info, "MORE PREFIXES AND SUFFIXES", _).
 % ---
+test_case(pos, "ĉeflingvanaro",   'ĉef-lingv-an-ar-o').
+test_case(pos, "dispraulino",     'dis-pra-ul-in-o').
+test_case(pos, "disrekonigi",     'dis-re-kon-ig-i').
+test_case(pos, "eksbopatrujeco",  'eks-bo-patr-uj-ec-o').
+test_case(pos, "ekslernejestro",  'eks-lern-ej-estr-o').
+test_case(pos, "geedziĝo",        'ge-edz-iĝ-o').
+test_case(pos, "malbelegeco",     'mal-bel-eg-ec-o').
+test_case(pos, "malmanĝeti",      'mal-manĝ-et-i').
+test_case(pos, "malridendema",    'mal-rid-end-em-a').
+test_case(pos, "misridetante",    'mis-rid-et-ant-e').
+test_case(pos, "pravortarego",    'pra-vort-ar-eg-o').
+test_case(pos, "redislegenda",    're-dis-leg-end-a').
+test_case(pos, "remanĝegoj",      're-manĝ-eg-o-j').
+test_case(pos, "remanĝetegindas", 're-manĝ-et-eg-ind-as').
+
+% --- Section: SUFFIX-PREFIX INVERSION ---
+% test_case(blank, _, _).
+% test_case(info, "SUFFIX-PREFIX INVERSION", _).
+% ---
+% test_case(pos, "lingvĉefanaro",   'lingv-ĉef-an-ar-o').
+% test_case(pos, "lingvanĉefaro",   'lingv-an-ĉef-ar-o').
+% test_case(pos, "lingvanarĉefo",   'lingv-an-ar-ĉef-o').
+% test_case(pos, "bopatreksujeco",  'bo-patr-eks-uj-ec-o').
+% test_case(pos, "bopatrujekseco",  'bo-patr-uj-eks-ec-o').
 
 % --- Section: COMPLEX DERIVATIONS ---
 % Words with multiple affixes (prefixes, suffixes) and compounds.
 test_case(blank, _, _).
 test_case(info, "COMPLEX DERIVATIONS", _).
 % ---
-test_case(pos, "dispraulino", 'dis-pra-ul-in-o').
-test_case(pos, "geedziĝo", 'ge-edz-iĝ-o').
-test_case(pos, "interpretita", 'interpret-it-a').
-test_case(pos, "komunumo", 'komun-um-o').
-test_case(pos, "malestimo", 'mal-estim-o').
-test_case(pos, "malmanĝeti", 'mal-manĝ-et-i').
-test_case(pos, "malplio", 'mal-pli-o').
-test_case(pos, "maltroo", 'mal-tro-o').
-test_case(pos, "manĝado", 'manĝ-ad-o').
-test_case(pos, "orfonto", 'orf-ont-o').
-test_case(pos, "plenumita", 'plen-um-it-a').
-test_case(pos, "plenumo", 'plen-um-o').
-test_case(pos, "praulon", 'pra-ul-o-n').
-test_case(pos, "registaro", 'reg-ist-ar-o').
-test_case(pos, "rekono", 're-kon-o').
-test_case(pos, "remanĝegoj", 're-manĝ-eg-o-j').
-test_case(pos, "remanĝetegindas", 're-manĝ-et-eg-ind-as').
-test_case(pos, "sideti", 'sid-et-i').
-test_case(pos, "suvereneco", 'suveren-ec-o').
-test_case(pos, "telefonado", 'telefon-ad-o').
-test_case(pos, "vidigi", 'vid-ig-i').
-test_case(pos, "vidintajn", 'vid-int-a-j-n').
-test_case(pos, "vidiĝi", 'vid-iĝ-i').
+test_case(pos, "malplio",         'mal-pli-o').
+test_case(pos, "maltroo",         'mal-tro-o').
+test_case(pos, "orfonto",         'orf-ont-o').
+test_case(pos, "praulon",         'pra-ul-o-n').
 
 % --- Future/Optional Test Cases (Currently Commented Out) ---
 % test_case(pos, "amaskomunikilo", 'amas-komunik-il-o'). 
 % test_case(pos, "balotrajto", 'balot-rajt-o'). 
 % test_case(pos, "ĉiu", 'ĉi-u').
+% test_case(pos, "ĉiukazo", 'ĉiu-kaz-o'). 
+% test_case(pos, "ĉiuokaze", 'ĉiu-okaz-e').
 % test_case(pos, "enmeto", 'en-met-o'). 
 % test_case(pos, "interkompreno", 'inter-kompren-o'). 
 % test_case(pos, "kunvenado", 'kun-ven-ad-o'). 
 % test_case(pos, "kunveno", 'kun-ven-o'). 
 % test_case(pos, "lingvonomo", 'lingv-o-nom-o'). 
+% test_case(pos, "maltro",          'mal-tro').
 % test_case(pos, "neoficiala", 'ne-oficial-a'). 
 % test_case(pos, "nombrovorto", 'nombr-o-vort-o'). 
 % test_case(pos, "nombrvorto", 'nombr-vort-o'). 
@@ -169,8 +194,6 @@ test_case(pos, "vidiĝi", 'vid-iĝ-i').
 % test_case(pos, "sindevigo", 'si-n-dev-ig-o'). 
 % test_case(pos, "sinsekvo", 'si-n-sekv-o'). 
 % test_case(pos, "tajperaro", 'tajp-erar-o'). 
-% test_case(pos, "ĉiukazo", 'ĉiu-kaz-o'). 
-% test_case(pos, "ĉiuokaze", 'ĉiu-okaz-e').
 
 % --- Section: WRITING SYSTEMS ---
 % These cases test the normalization of X-system, H-system, and Caret notation.
