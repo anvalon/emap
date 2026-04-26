@@ -21,6 +21,21 @@ $tag_descriptions = [
         'fut' => 'finaĵo',
         'kon' => 'finaĵo',
         'vol' => 'finaĵo',
+        /* Correlatives */
+        'rel' => 'radiko',
+        'mnt' => 'radiko',
+        'omn' => 'radiko',
+        'ned' => 'radiko',
+        'neg' => 'radiko',
+        'ind' => 'finaĵo',
+        'obj' => 'finaĵo',
+        'eco' => 'finaĵo',
+        'lok' => 'finaĵo',
+        'tmp' => 'finaĵo',
+        'mot' => 'finaĵo',
+        'man' => 'finaĵo',
+        'pos' => 'finaĵo',
+        'kvn' => 'finaĵo',
     ];
 
 $class_map = [
@@ -37,7 +52,22 @@ $class_map = [
         'prt' => 'finaĵo',
         'fut' => 'finaĵo',
         'kon' => 'finaĵo',
-        'vol' => 'finaĵo'
+        'vol' => 'finaĵo',
+        /* Correlatives */
+        'rel' => 'radiko',
+        'mnt' => 'radiko',
+        'omn' => 'radiko',
+        'ned' => 'radiko',
+        'neg' => 'radiko',
+        'ind' => 'finaĵo',
+        'obj' => 'finaĵo',
+        'eco' => 'finaĵo',
+        'lok' => 'finaĵo',
+        'tmp' => 'finaĵo',
+        'mot' => 'finaĵo',
+        'man' => 'finaĵo',
+        'pos' => 'finaĵo',
+        'kvn' => 'finaĵo',
     ];
 
     if (empty($word)) return null;
