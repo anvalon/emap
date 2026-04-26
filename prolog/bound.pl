@@ -19,48 +19,49 @@
 % -----------------------------------------------------------------
 
 % --- External Dependencies Declarations ---
-% These declarations prevent "undefined procedure" errors during compilation
-:- dynamic root/1, prefix/1, suffix/1.
-:- multifile root/1, prefix/1, suffix/1.
-:- discontiguous tail/2. % Inform Prolog that tail/2 is defined elsewhere
+:- dynamic root/1, prefix/1, suffix/1.             % Allow facts to be loaded from external files        % Dynamic facts
+:- multifile root/1, prefix/1, suffix/1.           % Allow predicates to be spread across files          % Multifile support
+:- discontiguous tail/2.                           % tail/2 is defined in tails.pl                       % External tail/2
 
-% Handles the segmentation of a bound root followed by its tail
-bound_extended(In, Results) :-
-    append(PrefixRootSuffix, TailChars, In),
-    bound_complete(PrefixRootSuffix, RadPart),
-    tail(TailChars, TailPart),
-    % Uniamo le liste per restituire un risultato piatto al web/test
-    append(RadPart, TailPart, Results).
+% -----------------------------------------------------------------
+% bound_extended/2: Implementation of 'bound_complete tail'
+% -----------------------------------------------------------------
+bound_extended(In, Results) :-                     % Entry point for analyzing bound words              % Main entry
+    append(PrefixRootSuffix, TailChars, In),       % Split total chars into radical and tail             % Split rad/tail
+    TailChars \= [],                               % A bound root MUST have a grammatical tail           % Ensure tail exists
+    bound_complete(PrefixRootSuffix, RadPart),     % Validate the core radical structure                 % Validate radical
+    tail(TailChars, TailPart),                     % Validate the grammatical ending                    % Validate tail
+    append(RadPart, TailPart, Results).            % Merge radical and tail into one list                % Merge results
 
-% Logic for the complete root block (Prefixes + Root + Suffixes)
-bound_complete(In, Results) :-
-    append(PrefPart, Rest1, In),
-    check_prefixes(PrefPart, PrefTags),
-    append(RootPart, SufPart, Rest1),
-    root(RootPart),
-    check_suffixes(SufPart, SufTags),
-    % Usiamo 'rad' per compatibilità con la class_map di prolog.php
-    append(PrefTags, [[RootPart, rad]], Temp),
-    append(Temp, SufTags, Results).
+% -----------------------------------------------------------------
+% bound_complete/2: Implementation of '{prefix} bound_root {suffix}'
+% -----------------------------------------------------------------
+bound_complete(In, Results) :-                     % Core logic for the radical part                     % Radical logic
+    append(PrefPart, Rest1, In),                   % Extract potential prefixes from the start           % Extract prefixes
+    check_prefixes(PrefPart, PrefTags),            % Validate the sequence of prefixes                  % Check prefixes
+    append(RootPart, SufPart, Rest1),              % Split remainder into root and suffixes              % Split root/suf
+    RootPart \= [],                                % Root cannot be an empty string                      % Root not empty
+    root(RootPart),                                % Verify if the root exists in dictionary             % Dictionary lookup
+    check_suffixes(SufPart, SufTags),              % Validate the sequence of suffixes                  % Check suffixes
+    append(PrefTags, [[RootPart, rad]], Temp),     % Tag the root as 'rad' (radical)                     % Tag root
+    append(Temp, SufTags, Results).                % Combine all tagged parts into Results               % Final assembly
 
 % -----------------------------------------------------------------
 % Recursive Validation Rules
 % -----------------------------------------------------------------
 
-% check_prefixes/2: Recursively checks if the start contains valid prefixes
-check_prefixes([], []).
-check_prefixes(Part, [[P, pre]|RestOut]) :- 
-    Part \= [],
-    append(P, Rest, Part),
-    P \= [],
-    prefix(P),
-    check_prefixes(Rest, RestOut).
+% check_prefixes/2: Recursively validates multiple prefixes
+check_prefixes([], []).                            % Base case: no prefixes found                        % End recursion
+check_prefixes(Part, [[P, pre]|RestOut]) :-        % Recursive case: find prefix P                       % Find prefix
+    append(P, Rest, Part),                         % Take a piece P from the front                       % Split P
+    P \= [],                                       % The piece P must not be empty                       % P not empty
+    prefix(P),                                     % Match P against the prefix dictionary               % Match dictionary
+    check_prefixes(Rest, RestOut).                 % Recurse on the remaining characters                 % Recurse
 
-% check_suffixes/2: Recursively checks if the post-root part contains valid suffixes
-check_suffixes([], []).
-check_suffixes(Part, [[S, suf]|RestOut]) :-
-    Part \= [],
-    append(S, Rest, Part),
-    S \= [],
-    suffix(S),
-    check_suffixes(Rest, RestOut).
+% check_suffixes/2: Recursively validates multiple suffixes
+check_suffixes([], []).                            % Base case: no suffixes found                        % End recursion
+check_suffixes(Part, [[S, suf]|RestOut]) :-        % Recursive case: find suffix S                       % Find suffix
+    append(S, Rest, Part),                         % Take a piece S from the front                       % Split S
+    S \= [],                                       % The piece S must not be empty                       % S not empty
+    suffix(S),                                     % Match S against the suffix dictionary               % Match dictionary
+    check_suffixes(Rest, RestOut).                 % Recurse on the remaining characters                 % Recurse
