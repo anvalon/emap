@@ -20,7 +20,6 @@
 % relative to the location of main.pl.
 :- ensure_loaded(formt).  % Formatting utilities
 :- ensure_loaded(files).  % File management
-:- ensure_loaded(chars).  % Character normalization
 :- ensure_loaded(tails).  % Grammatical endings
 :- ensure_loaded(bound).  % Bound root logic
 :- ensure_loaded(words).  % Main word logic
