@@ -12,6 +12,13 @@
 
 % --- Test Suite Database ---
 
+% -----------------------------------------------------------------
+% --- Section: POSITIVE TESTS
+% -----------------------------------------------------------------
+test_case(info, "-----------------------------", _).
+test_case(info, "POSITIVE TESTS", _).
+test_case(info, "-----------------------------", _).
+
 % --- Section: NOUNS & INFLECTIONS ---
 % Basic nouns with plural and accusative markers.
 test_case(blank, _, _).
@@ -165,10 +172,10 @@ test_case(pos, "remanĝetegindas", 're-manĝ-et-eg-ind-as').
 test_case(blank, _, _).
 test_case(info, "COMPLEX DERIVATIONS", _).
 % ---
-test_case(pos, "malplio",         'mal-pli-o').
-test_case(pos, "maltroo",         'mal-tro-o').
-test_case(pos, "orfonto",         'orf-ont-o').
-test_case(pos, "praulon",         'pra-ul-o-n').
+test_case(pos, "malplio", 'mal-pli-o').
+test_case(pos, "maltroo", 'mal-tro-o').
+test_case(pos, "orfonto", 'orf-ont-o').
+test_case(pos, "praulon", 'pra-ul-o-n').
 
 % --- Future/Optional Test Cases (Currently Commented Out) ---
 % test_case(pos, "amaskomunikilo", 'amas-komunik-il-o'). 
@@ -200,30 +207,116 @@ test_case(pos, "praulon",         'pra-ul-o-n').
 test_case(blank, _, _).
 test_case(info, "WRITING SYSTEMS", _).
 % ---
-test_case(pos, "mangxas", 'manĝ-as').
-test_case(pos, "manghas", 'manĝ-as').
-test_case(pos, "mang^as", 'manĝ-as').
+test_case(pos, "mangxas",  'manĝ-as').
+test_case(pos, "manghas",  'manĝ-as').
+test_case(pos, "mang^as",  'manĝ-as').
 test_case(pos, "sxatataj", 'ŝat-at-a-j').
 test_case(pos, "shatataj", 'ŝat-at-a-j').
 test_case(pos, "s^atataj", 'ŝat-at-a-j').
 
-% --- Section: NEGATIVE TESTS ---
+% --- Section: CORRELATIVES ---
+% These cases abaout correlatives.
+test_case(blank, _, _).
+test_case(info, "CORRELATIVES", _).
+% ---
+% Root "ki"
+test_case(pos, "kiu",  'ki-u').
+test_case(pos, "kio",  'ki-o').
+test_case(pos, "kia",  'ki-a').
+test_case(pos, "kie",  'ki-e').
+test_case(pos, "kiam", 'ki-am').
+test_case(pos, "kial", 'ki-al').
+test_case(pos, "kiel", 'ki-el').
+test_case(pos, "kies", 'ki-es').
+test_case(pos, "kiom", 'ki-om').
+% Root "ti"
+test_case(pos, "tiu",  'ti-u').
+test_case(pos, "tio",  'ti-o').
+test_case(pos, "tia",  'ti-a').
+test_case(pos, "tie",  'ti-e').
+test_case(pos, "tiam", 'ti-am').
+test_case(pos, "tial", 'ti-al').
+test_case(pos, "tiel", 'ti-el').
+test_case(pos, "ties", 'ti-es').
+test_case(pos, "tiom", 'ti-om').
+% Root "ĉi"
+test_case(pos, "ĉiu",  'ĉi-u').
+test_case(pos, "ĉio",  'ĉi-o').
+test_case(pos, "ĉia",  'ĉi-a').
+test_case(pos, "ĉie",  'ĉi-e').
+test_case(pos, "ĉiam", 'ĉi-am').
+test_case(pos, "ĉial", 'ĉi-al').
+test_case(pos, "ĉiel", 'ĉi-el').
+test_case(pos, "ĉies", 'ĉi-es').
+test_case(pos, "ĉiom", 'ĉi-om').
+% Root "i"
+test_case(pos, "iu",  'i-u').
+test_case(pos, "io",  'i-o').
+test_case(pos, "ia",  'i-a').
+test_case(pos, "ie",  'i-e').
+test_case(pos, "iam", 'i-am').
+test_case(pos, "ial", 'i-al').
+test_case(pos, "iel", 'i-el').
+test_case(pos, "ies", 'i-es').
+test_case(pos, "iom", 'i-om').
+% Root "neni"
+test_case(pos, "neniu",  'neni-u').
+test_case(pos, "nenio",  'neni-o').
+test_case(pos, "nenia",  'neni-a').
+test_case(pos, "nenie",  'neni-e').
+test_case(pos, "neniam", 'neni-am').
+test_case(pos, "nenial", 'neni-al').
+test_case(pos, "neniel", 'neni-el').
+test_case(pos, "nenies", 'neni-es').
+test_case(pos, "neniom", 'neni-om').
+
+% -----------------------------------------------------------------
+% --- Section: NEGATIVE TESTS
+% -----------------------------------------------------------------
 % 'neg' tests ensure that the segmenter correctly rejects invalid
 % strings or grammatically impossible structures.
 test_case(blank, _, _).
+test_case(info, "-----------------------------", _).
 test_case(info, "NEGATIVE TESTS", _).
+test_case(info, "-----------------------------", _).
 % ---
 test_case(neg, "antmanĝi", fail).
-test_case(neg, "as", fail).
-test_case(neg, "badabum", fail).
-test_case(neg, "iomanĝi", fail).
-test_case(neg, "malmanĝ", fail).
-test_case(neg, "manĝ", fail).
+test_case(neg, "as",       fail).
+test_case(neg, "badabum",  fail).
+test_case(neg, "iomanĝi",  fail).
+test_case(neg, "malmanĝ",  fail).
+test_case(neg, "manĝ",     fail).
 test_case(neg, "manĝas n", fail).
 test_case(neg, "manĝasas", fail).
-test_case(neg, "manĝasj", fail).
-test_case(neg, "manĝi-i", fail).
-test_case(neg, "manĝio", fail).
-test_case(neg, "manĝj", fail).
-test_case(neg, "manĝn", fail).
-test_case(neg, "manĝnn", fail).
+test_case(neg, "manĝasj",  fail).
+test_case(neg, "manĝi-i",  fail).
+test_case(neg, "manĝio",   fail).
+test_case(neg, "manĝj",    fail).
+test_case(neg, "manĝn",    fail).
+test_case(neg, "manĝnn",   fail).
+
+% --- Section: CORRELATIVES ---
+% These cases abaout correlatives.
+test_case(blank, _, _).
+test_case(info, "CORRELATIVES", _).
+% ---
+test_case(neg, "ki",        fail).
+test_case(neg, "malkio",    fail).
+test_case(neg, "kiego",     fail).
+test_case(neg, "rekieto",   fail).
+test_case(neg, "ti",        fail).
+test_case(neg, "maltio",    fail).
+test_case(neg, "tiego",     fail).
+test_case(neg, "ekstieto",  fail).
+test_case(neg, "i",         fail).
+test_case(neg, "praio",     fail).
+test_case(neg, "iego",      fail).
+test_case(neg, "reieto",    fail).
+test_case(neg, "ĉi",        fail).
+test_case(neg, "malĉio",    fail).
+test_case(neg, "ĉiego",     fail).
+test_case(neg, "reĉieto",   fail).
+test_case(neg, "neni",      fail).
+test_case(neg, "malnenio",  fail).
+test_case(neg, "neniego",   fail).
+test_case(neg, "renenieto", fail).
