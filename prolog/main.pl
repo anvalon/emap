@@ -23,6 +23,7 @@
 :- ensure_loaded(tails).     % Grammatical endings
 :- ensure_loaded(prefixes).  % Recursive prefix logic                                     
 :- ensure_loaded(suffixes).  % Recursive suffix logic
+:- ensure_loaded(corrs).     % Correlativs logic
 :- ensure_loaded(bounds).    % Bound root logic
 :- ensure_loaded(words).     % Main word logic
 
