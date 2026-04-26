@@ -18,11 +18,13 @@
 % --- Module Imports ---
 % These imports ensure that the file is modular and paths remain 
 % relative to the location of main.pl.
-:- ensure_loaded(formt).  % Formatting utilities
-:- ensure_loaded(files).  % File management
-:- ensure_loaded(tails).  % Grammatical endings
-:- ensure_loaded(bound).  % Bound root logic
-:- ensure_loaded(words).  % Main word logic
+:- ensure_loaded(format).    % Formatting utilities
+:- ensure_loaded(files).     % File management
+:- ensure_loaded(tails).     % Grammatical endings
+:- ensure_loaded(prefixes).  % Recursive prefix logic                                     
+:- ensure_loaded(suffixes).  % Recursive suffix logic
+:- ensure_loaded(bounds).    % Bound root logic
+:- ensure_loaded(words).     % Main word logic
 
 % -----------------------------------------------------------------
 % analyze/2: Coordination of normalization, analysis, and formatting
