@@ -19,8 +19,7 @@
 % -----------------------------------------------------------------
 
 % --- External Dependencies Declarations ---
-:- dynamic root/1, prefix/1, suffix/1.             % Allow facts to be loaded from external files        % Dynamic facts
-:- multifile root/1, prefix/1, suffix/1.           % Allow predicates to be spread across files          % Multifile support
+:- dynamic       root/1, prefix/1, suffix/1.       % Allow facts to be loaded from external files        % Dynamic facts
 :- discontiguous tail/2.                           % tail/2 is defined in tails.pl                       % External tail/2
 
 % -----------------------------------------------------------------
