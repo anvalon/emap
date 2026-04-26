@@ -19,7 +19,7 @@
 test_case(blank, _, _).
 test_case(info, "NOUNS & INFLECTIONS", _).
 % ---
-test_case(pos, "domo",   'dom-o-s').
+test_case(pos, "domo",   'dom-o').
 test_case(pos, "domon",  'dom-o-n').
 test_case(pos, "domoj",  'dom-o-j').
 test_case(pos, "domojn", 'dom-o-j-n').
