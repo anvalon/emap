@@ -21,21 +21,20 @@
 % 4. Terminates the Prolog process to return control to the caller.
 % -----------------------------------------------------------------
 analyze_for_web(Word) :-
-    % setof/3 gathers all unique solutions for segment(Word, S).
-    % If at least one solution is found, it proceeds to the success block.
-    ( setof(S, segment(Word, S), Solutions)
+    % setof/3 gathers all unique solutions for analyze(Word, S).
+    % Updated from 'word' to 'analyze' to handle the full workflow.
+    ( setof(S, analyze(Word, S), Solutions)
     -> % --- SUCCESS CASE ---
-       format('{"status":"success", "solutions":['),
+       format('{"status":"success", "solutions":[', []),
        % Recursively print the list of solutions in JSON format
        print_json_list(Solutions),
-       format(']}')
+       format(']}', [])
     ;  % --- ERROR CASE ---
-       % If segment/2 fails (word unknown), return a structured error message.
-       format('{"status":"error", "message":"Word not recognized"}')
+       % If analysis fails, return a structured error message.
+       format('{"status":"error", "message":"Word not recognized"}', [])
     ),
     % halt/0 is crucial here: it tells the SWI-Prolog interpreter 
-    % to close the process after printing the result, allowing PHP 
-    % to capture the output without waiting.
+    % to close the process after printing the result.
     halt.
 
 % -----------------------------------------------------------------
@@ -51,5 +50,5 @@ print_json_list([H]) :-
 
 % Recursive Case: Multiple solutions (print current one with a comma).
 print_json_list([H|T]) :- 
-    format('"~w",', [H]), 
+    format('"~w",', [H]),
     print_json_list(T).
