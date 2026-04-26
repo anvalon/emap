@@ -18,6 +18,12 @@
 % - Dynamic roots: Loaded from external dictionary files.
 % -----------------------------------------------------------------
 
+% --- External Dependencies Declarations ---
+% These declarations prevent "undefined procedure" errors during compilation
+:- dynamic root/1, prefix/1, suffix/1.
+:- multifile root/1, prefix/1, suffix/1.
+:- discontiguous tail/2. % Inform Prolog that tail/2 is defined elsewhere
+
 % Handles the segmentation of a bound root followed by its tail
 bound_extended(In, Results) :-
     append(PrefixRootSuffix, TailChars, In),
