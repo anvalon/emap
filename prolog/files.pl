@@ -11,6 +11,28 @@
 :- dynamic root/1, prefix/1, suffix/1.
 
 % -----------------------------------------------------------------
+% load_data/0: Automated dictionary loading with relative path resolution
+% -----------------------------------------------------------------
+load_data :- 
+    % 1. Identify the absolute path of the current script
+    source_file(load_data, FilePath),
+    file_directory_name(FilePath, PrologDir),
+    
+    % 2. Resolve the project root (assuming /prolog is a subfolder)
+    file_directory_name(PrologDir, ProjectRoot),
+    
+    % 3. Construct absolute paths to the /data folder
+    atomic_list_concat([ProjectRoot, '/data/roots.txt'],    RootPath),
+    atomic_list_concat([ProjectRoot, '/data/prefixes.txt'], PrefixPath),
+    atomic_list_concat([ProjectRoot, '/data/suffixes.txt'], SuffixPath),
+    
+    % 4. Load each dictionary using utilities from files.pl
+    load_from_file(RootPath,   root),
+    load_from_file(PrefixPath, prefix),
+    load_from_file(SuffixPath, suffix),
+    format('--- Dictionaries updated in main ---~n', []).
+
+% -----------------------------------------------------------------
 % load_from_file/2: Generic logic to clear a predicate and load data
 % load_from_file(+FileName, +PredicateName)
 % -----------------------------------------------------------------
@@ -34,8 +56,8 @@ load_from_file(FileName, PredicateName) :-
 read_lines(In, PredicateName) :-
     read_line_to_codes(In, Codes),
     (   Codes == end_of_file
-    ->  true  % Stop when end of file is reached
-    ;   % Convert character codes to an atom and trim whitespace
+    ->  true
+    ;   % Convert codes to atom and trim whitespace
         atom_codes(RawAtom, Codes),
         normalize_space(atom(Atom), RawAtom),
         
@@ -50,27 +72,3 @@ read_lines(In, PredicateName) :-
         % Recursive call for the next line
         read_lines(In, PredicateName)
     ).
-
-% -----------------------------------------------------------------
-% update/0: Automated dictionary loading with relative path resolution
-% -----------------------------------------------------------------
-update :- 
-    % 1. Identify the absolute path of the current script
-    source_file(update, FilePath),
-    file_directory_name(FilePath, PrologDir),
-    
-    % 2. Resolve the project root (assuming /prolog is a subfolder)
-    file_directory_name(PrologDir, ProjectRoot),
-    
-    % 3. Construct absolute paths to the /data folder
-    atomic_list_concat([ProjectRoot, '/data/roots.txt'], RootPath),
-    atomic_list_concat([ProjectRoot, '/data/prefixes.txt'], PrefixPath),
-    atomic_list_concat([ProjectRoot, '/data/suffixes.txt'], SuffixPath),
-    
-    % 4. Load each dictionary into its corresponding predicate
-    load_from_file(RootPath, root),
-    load_from_file(PrefixPath, prefix),
-    load_from_file(SuffixPath, suffix).
-
-% --- Self-execute update on startup ---
-:- update.
