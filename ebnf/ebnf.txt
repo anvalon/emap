@@ -1,7 +1,7 @@
 /* --- 0. Words */
 word      = {word_part} word_head 
-word_head = free_extended | correlative_extended | bound_extended;
-word_part = free_complete | correlative_complete | bound_complete;
+word_head = free_extended | corr_extended | bound_extended;
+word_part = free_complete | corr_complete | bound_complete;
 
 /* --- 1. Free roots */
 free_extended = {prefix} free_root ([tail] | {suffix} tail);
@@ -11,14 +11,14 @@ free_affixed  = {prefix} free_root {suffix};
 free_root     = "en" | "al" | "de" | "por" | "ankaŭ" | ...;
 
 /* --- 2. Correlatives */
-correlative_extended = correlative_root (correlative_final_a [plural_ending] [accusative_ending]) | (correlative_final_b [accusative_ending | (nominal_ending [plural_ending] [accusative_ending])]) |
-                                        (correlative_final_c [(nominal_ending [plural_ending] [accusative_ending]) | (adverbal_ending [accusative_ending])]);
-correlative_complete = correlative_root correlative_final;
-correlative_root     = "k" | "t" | "ĉ" | "i" | "neni";
-correlative_final    = correlative_final_a | correlative_final_b | correlative_final_c;
-correlative_final_a  = "u" | "o" | "a";
-correlative_final_b  = "e";
-correlative_final_c  = "am" | "al" | "el" | "es" | "om";
+corr_extended = corr_root (corr_final_a [plural_ending] [accusative_ending]) | (corr_final_b [accusative_ending | (nominal_ending [plural_ending] [accusative_ending])]) |
+                          (corr_final_c [(nominal_ending [plural_ending] [accusative_ending]) | (adverbal_ending [accusative_ending])]);
+corr_complete = corr_root corr_final;
+corr_root     = "ki" | "ti" | "ĉi" | "i" | "neni";
+corr_final    = corr_final_a | corr_final_b | corr_final_c;
+corr_final_a  = "u" | "o" | "a";
+corr_final_b  = "e";
+corr_final_c  = "am" | "al" | "el" | "es" | "om";
 
 /* --- 3. Bound roots */
 bound_extended = bound_complete tail;
@@ -32,7 +32,8 @@ suffix = "eg" | "et" | "in" | ...;
 /* --- 5. Tails */
 tail              = verbal_ending | (nominal_ending [plural_ending] [accusative_ending]) | (adverbal_ending [accusative_ending]);
 verbal_ending     = "i" | "as" | "is" | "os" | "us" | "u";
-nominal_ending    = "o" | "a";
+nominal_ending    = "o";
+adjectival_ending = "a";
 adverbal_ending   = "e";
 plural_ending     = "j";
 accusative_ending = "n";
