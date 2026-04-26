@@ -7,10 +7,8 @@
 % -----------------------------------------------------------------
 
 % --- Database Initialization ---
-% Removes any previously loaded test cases to ensure a clean state.
-:- retractall(test_case(_, _, _)). 
-% Declares test_case/3 as dynamic so it can be managed at runtime.
-:- dynamic test_case/3.
+:- abolish(test_case/3).    % Ensure we start from a clean slate every time the file is consulted
+:- dynamic test_case/3.     % Declares test_case/3 as dynamic so it can be managed at runtime.
 
 % --- Test Suite Database ---
 
