@@ -55,7 +55,7 @@ run_and_count([t(blank, _, _)|Rest], Visibility, ArrowCol, AccP, AccF, TotalP, T
     run_and_count(Rest, Visibility, ArrowCol, AccP, AccF, TotalP, TotalF).
 
 run_and_count([t(pos, In, Exp)|Rest], Visibility, ArrowCol, AccP, AccF, TotalP, TotalF) :-
-    ( setof(S, segment(In, S), Sols) ->
+    ( setof(S, analyze(In, S), Sols) ->
         maplist(strip_tags_from_atom, Sols, CleanSols),
         ( member(Exp, CleanSols) -> 
             Status = pass, NewAccP is AccP + 1, NewAccF = AccF
@@ -68,7 +68,7 @@ run_and_count([t(pos, In, Exp)|Rest], Visibility, ArrowCol, AccP, AccF, TotalP, 
     run_and_count(Rest, Visibility, ArrowCol, NewAccP, NewAccF, TotalP, TotalF).
 
 run_and_count([t(neg, In, _)|Rest], Visibility, ArrowCol, AccP, AccF, TotalP, TotalF) :-
-    ( segment(In, _) ->
+    ( analyze(In, _) ->
         Status = fail, NewAccP = AccP, NewAccF = AccF + 1
     ;   Status = pass, NewAccP is AccP + 1, NewAccF = AccF
     ),
