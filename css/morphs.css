@@ -1,0 +1,68 @@
+/* -----------------------------------------------------------------
+   FILE: morphs.css
+   PROJECT: Esperanto Morphological Analyzer (Prolog Version)
+   
+   DESCRIPTION:
+   This file is responsible for the visual segmentation of Esperanto words.
+   Each morpheme (prefix, root, suffix, ending) is styled as a distinct
+   visual block. The color palette is specifically designed to provide
+   instant recognition of grammatical categories, mapping directly
+   to the tags returned by the Prolog grammar (e.g., rad, pre, sub).
+   
+   MAPPING TO EBNF PRODUCTIONS:
+   - .prefix -> matches {pref}
+   - .root   -> matches root_ext / atom_root
+   - .suffix -> matches {suff}
+   - .ending -> matches tail / nom_end / acc_end
+   ----------------------------------------------------------------- */
+
+/* Base container for a single morpheme block */
+.morph {
+  display: inline-block;     /* Places morphemes side-by-side like a word */
+  vertical-align: top;       /* Aligns morphemes at the top if heights differ */
+  margin-right: .3em;        /* Visual separation between word parts */
+  margin-bottom: .3em;       /* Spacing for wrapped words on small screens */
+  text-align: center;        /* Centers both the text and the tag label */
+  font-weight: bold;         /* Makes the morpheme text prominent */
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  border-width: 1px;         /* Structural border for the block */
+  border-style: solid;
+  border-radius: 4px;        /* Distinct rounded box for each part */
+  padding: 4px 6px;          /* Internal padding for readability */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Subtle depth effect */
+}
+
+/* Secondary label for the grammatical tag (e.g., 'RAD', 'SUB') */
+.label {
+  display: block;            /* Positions the tag below the morpheme text */
+  font-size: 0.70em;         /* Smaller text to distinguish it from the root */
+  opacity: 0.7;              /* Reduced visual weight */
+}
+
+/* CATEGORY 1: Prefixes (Blue theme) */
+.morph.prefix {
+  background-color: #dbeafe; /* Light pastel blue for easy reading */
+  border-color: #3b82f6;     /* Stronger blue border for definition */
+  color: #1e40af;            /* Dark blue text for high contrast */
+}
+
+/* CATEGORY 2: Roots (Green theme) */
+.morph.root {
+  background-color: #dcfce7; /* Soft sage green for the word's core */
+  border-color: #22c55e;     /* Medium green border */
+  color: #166534;            /* Dark green text */
+}
+
+/* CATEGORY 3: Suffixes (Gold/Yellow theme) */
+.morph.suffix {
+  background-color: #fef3c7; /* Honey yellow for word formation parts */
+  border-color: #f59e0b;     /* Amber border */
+  color: #92400e;            /* Brownish-gold text */
+}
+
+/* CATEGORY 4: Grammatical Endings (Red theme) */
+.morph.ending {
+  background-color: #fecaca; /* Soft red/pink for inflections */
+  border-color: #dc2626;     /* Bright red border */
+  color: #7f1d1d;            /* Deep red text to highlight grammatical function */
+}

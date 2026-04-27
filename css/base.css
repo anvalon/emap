@@ -1,0 +1,38 @@
+/* -----------------------------------------------------------------
+   FILE: base.css
+   PROJECT: Esperanto Morphological Analyzer (Prolog Version)
+   
+   DESCRIPTION:
+   This stylesheet establishes the architectural baseline for the application.
+   It handles global typography, color schemes for standard text elements,
+   and basic spacing for the body and primary headings. 
+   The design focuses on readability and a clean, "green-themed" aesthetic
+   consistent with the Esperanto movement's traditional colors.
+   
+   MAINTAINABILITY:
+   Rules are kept minimal and global to avoid specific overrides in 
+   modular component files (like form.css or morphs.css).
+   ----------------------------------------------------------------- */
+
+/* Global body styling to ensure a centered, readable layout */
+body {
+  font-family: sans-serif; /* Standard web-safe sans-serif for high legibility */
+  line-height: 1.6;        /* Generous line spacing for textual analysis */
+  max-width: 800px;        /* Limits width to prevent eye strain on wide monitors */
+  margin: 0 auto;          /* Centers the main container horizontally */
+  padding: 0 15px;         /* Prevents text from touching screen edges on mobile */
+  color: #333;           /* Soft black for better contrast and reduced fatigue */
+}
+
+/* Primary heading style using the signature Esperanto green */
+h1 {
+  color: #2e7d32;         /* Deep forest green representing the project identity */
+  margin-top: 0;            /* Removes default top margin for better alignment */
+}
+
+/* Global hyperlink settings to maintain thematic consistency */
+a, a:hover, a:visited {
+  text-decoration: none;   /* Removes distracting underlines */
+  color: #2E7D32;        /* Links match the primary branding color */
+  transition: color 0.2s;  /* Smooth transition for interaction feedback */
+}

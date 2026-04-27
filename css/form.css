@@ -1,0 +1,43 @@
+/* -----------------------------------------------------------------
+   FILE: form.css
+   PROJECT: Esperanto Morphological Analyzer (Prolog Version)
+   
+   DESCRIPTION:
+   This module handles the styling of all user input components.
+   It focuses on the "Search Box" functionality where users input
+   Esperanto words for analysis. It ensures that interactive elements
+   like textareas and buttons are accessible, responsive, and 
+   provide visual feedback during interaction.
+   
+   EBNF REFLECTION:
+   The UI facilitates the 'word' production by providing a clean 
+   entry point for the raw string that the Prolog engine will parse.
+   ----------------------------------------------------------------- */
+
+/* Stylings for the main word input area */
+textarea {
+  flex: 1;                 /* Allows the input to grow and fill available space */
+  padding: 10px;           /* Internal spacing for comfortable typing */
+  border: 1px solid #ccc;  /* Neutral border to indicate an editable field */
+  border-radius: 4px;      /* Slightly rounded corners for a modern UI feel */
+  font-size: 16px;         /* Sufficient size to prevent auto-zoom on iOS */
+  resize: vertical;        /* Restricts horizontal resizing to preserve layout */
+}
+
+/* Action button styling to trigger the Prolog analysis */
+button {
+  background-color: #4CAF50; /* Vibrant green to indicate a positive action */
+  color: white;              /* High contrast text for accessibility */
+  padding: 10px 20px;        /* Sized for easy interaction on touch screens */
+  border: none;              /* Clean look without default browser borders */
+  border-radius: 4px;        /* Matches the textarea for visual harmony */
+  cursor: pointer;           /* Changes cursor to indicate interactivity */
+  font-size: 16px;           /* Aligned with input text size */
+  font-weight: bold;         /* Emphasis on the primary action */
+  transition: background 0.3s; /* Smooth color shift on interaction */
+}
+
+/* Hover state to enhance user experience (UX) feedback */
+button:hover {
+  background-color: #45a049; /* Darker green to signify the hover event */
+}
