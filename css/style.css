@@ -115,10 +115,10 @@ button:hover {
 }
 
 .morfemo.prefikso {
-  background-color: #fef3c7;
-  border-color: #f59e0b;
-  color: #92400e;
-} /* Giallo miele */
+  background-color: #dbeafe;
+  border-color: #3b82f6;
+  color: #1e40af;
+} /* Blu pastello */
 
 .morfemo.radiko {
   background-color: #dcfce7;
@@ -127,10 +127,10 @@ button:hover {
 } /* Verde salvia */
 
 .morfemo.sufikso {
-  background-color: #dbeafe;
-  border-color: #3b82f6;
-  color: #1e40af;
-} /* Blu pastello */
+  background-color: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
+} /* Giallo miele */
 
 .morfemo.finaĵo {
   background-color: #fecaca;
