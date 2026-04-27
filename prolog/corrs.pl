@@ -5,82 +5,94 @@
 % 
 % Description:
 % This module implements the analysis of Esperanto correlatives based 
-% on the EBNF specification. It decomposes correlatives into a 
-% prefix root (ki-, ti-, ĉi-, i-, neni-) and a specific final 
-% category (a, o, u, e, am, al, el, es, om).
+% on the updated EBNF specification. It decomposes correlatives into 
+% a prefix root (ki, ti, ĉi, i, neni) and three categories of finals.
 %
-% The logic handles three types of endings:
-% 1. Type A (u, o, a): Supports plural (-j) and accusative (-n).
-% 2. Type B (e): Supports only the accusative (-n).
-% 3. Type C (am, al, el, es, om): Invariable endings.
+% This version utilizes check_jn/2 and check_n/2 from tails.pl to 
+% handle standard Esperanto endings, following a declarative 
+% Prolog style that maps directly to the EBNF logic branches.
 %
 % Grammar Rules Implemented:
-% - correlative_extended = correlative_root + correlative_final_parts
-% - correlative_root     = "ki" | "ti" | "ĉi" | "i" | "neni"
+% corr_extended = corr_root (corr_final_a [plural_ending] [accusative_ending]) | 
+%                 (corr_final_b [accusative_ending | (nominal_ending [plural_ending] [accusative_ending])]) |
+%                 (corr_final_c [(nominal_ending [plural_ending] [accusative_ending]) | (adverbal_ending [accusative_ending])]);
 % -----------------------------------------------------------------
 
 % --- External Dependencies Declarations ---
-% Inform Prolog that these predicates are defined in tails.pl to avoid warnings
+% These predicates are defined in tails.pl. Discontiguous handles 
+% cases where they might be split during compilation.
 :- discontiguous check_jn/2. 
 :- discontiguous check_n/2.
+:- discontiguous tail/2.
 
 % --- Correlative Roots Definition ---
-% Maps the initial part of the correlative to its semantic tag
-% Source: EBNF correlative_root [cite: 7]
+% Maps the initial part of the correlative to its semantic tag.
 corr_root(['k', 'i'],        'rel'). % Interrogative/Relative
 corr_root(['t', 'i'],        'mnt'). % Demonstrative
 corr_root(['ĉ', 'i'],        'omn'). % Collective/Universal
 corr_root(['i'],             'ned'). % Indefinite
 corr_root(['n','e','n','i'], 'neg'). % Negative
 
-% --- Correlative Finals: Type A ---
-% These endings represent individuals, objects, or qualities
-% They can take plural (-j) and/or accusative (-n) markers [cite: 8, 15]
-corr_final_a(['u'], 'ind'). % Individual
-corr_final_a(['o'], 'obj'). % Thing/Object
-corr_final_a(['a'], 'eco'). % Quality
+% --- Correlative Finals Definitions ---
+% Final Type A: u, o, a (Support plural -j and accusative -n)
+corr_final_a(['u'], 'ind'). 
+corr_final_a(['o'], 'obj'). 
+corr_final_a(['a'], 'eco'). 
 
-% --- Correlative Finals: Type B ---
-% This ending represents location and can take an accusative for direction [cite: 8, 15]
-corr_final_b(['e'], 'lok').
+% Final Type B: e (Supports accusative -n or nominal extensions)
+corr_final_b(['e'], 'lok'). 
 
-% --- Correlative Finals: Type C ---
-% These are specialized endings for time, reason, manner, etc. [cite: 9]
-% They are generally treated as invariable in standard analysis.
-corr_final_c(['a', 'm'], 'tmp'). % Time
-corr_final_c(['a', 'l'], 'mot'). % Reason/Motive
-corr_final_c(['e', 'l'], 'man'). % Manner
-corr_final_c(['e', 's'], 'pos'). % Possession
-corr_final_c(['o', 'm'], 'kvn'). % Quantity
+% Final Type C: am, al, el, es, om (Invariable or extended)
+corr_final_c(['a', 'm'], 'tmp'). 
+corr_final_c(['a', 'l'], 'mot'). 
+corr_final_c(['e', 'l'], 'man'). 
+corr_final_c(['e', 's'], 'pos'). 
+corr_final_c(['o', 'm'], 'kvn'). 
 
 % -----------------------------------------------------------------
 % correlative_extended/2
 % -----------------------------------------------------------------
-% Main entry point for correlative analysis. Splits the input into 
-% root and final, then processes the final's specific inflection rules.
+% Decomposes input into root and final parts.
 correlative_extended(Input, Results) :-
-    append(RootChars, FinalChars, Input),          % Split input into potential root and remainder
-    corr_root(RootChars, RootTag),                 % Validate root against defined list [cite: 7]
-    analyze_final(FinalChars, FinalTags),          % Process the remainder as a final with tails
-    append([[RootChars, RootTag]], FinalTags, Results). % Assemble the final tagged list
+    append(RootChars, FinalChars, Input),
+    corr_root(RootChars, RootTag),
+    analyze_final(FinalChars, FinalTags),
+    append([[RootChars, RootTag]], FinalTags, Results).
 
-% --- Final Analysis Logic ---
+% -----------------------------------------------------------------
+% analyze_final/2: Declarative EBNF Implementation
+% -----------------------------------------------------------------
 
-% Case 1: Type A Finals (u, o, a)
-% Uses check_jn/2 from tails.pl to handle optional -j and -n [cite: 13, 15]
+% --- CASE 1: Finals A (u, o, a) ---
+% Rule: (corr_final_a [plural_ending] [accusative_ending])
 analyze_final(Input, [[BaseChars, BaseTag]|Rest]) :-
-    corr_final_a(BaseChars, BaseTag),              % Identify the base vowel (u, o, a) [cite: 8]
-    append(BaseChars, JN, Input),                  % Separate the base from possible inflections
-    check_jn(JN, Rest).                            % Validate -j, -n, or -jn markers 
+    corr_final_a(BaseChars, BaseTag),
+    append(BaseChars, JN, Input),
+    check_jn(JN, Rest). % Handles empty, -j, -n, or -jn
 
-% Case 2: Type B Finals (e)
-% Uses check_n/2 from tails.pl for the optional directional accusative [cite: 8, 15]
+% --- CASE 2: Finals B (e) ---
+% Branch 1: (corr_final_b [accusative_ending]) -> e, en
 analyze_final(Input, [[BaseChars, BaseTag]|Rest]) :-
-    corr_final_b(BaseChars, BaseTag),              % Identify the 'e' ending [cite: 8]
-    append(BaseChars, N, Input),                   % Separate 'e' from a possible 'n'
-    check_n(N, Rest).                              % Validate optional accusative marker 
+    corr_final_b(BaseChars, BaseTag),
+    append(BaseChars, N, Input),
+    check_n(N, Rest).   % Handles empty or -n
 
-% Case 3: Type C Finals (am, al, el, es, om)
-% Treated as a single invariable unit according to basic grammar [cite: 9]
+% Branch 2: (corr_final_b (nominal_ending ...)) -> e.g., e-o-j
+analyze_final(Input, [[BaseChars, BaseTag]|Rest]) :-
+    corr_final_b(BaseChars, BaseTag),
+    append(BaseChars, TailPart, Input),
+    TailPart \= [], 
+    TailPart \= ['n'], % Prevents overlapping with Branch 1
+    tail(TailPart, Rest).
+
+% --- CASE 3: Finals C (am, al, el, es, om) ---
+% Branch 1: Invariable -> e.g., kiam
 analyze_final(Input, [[Input, Tag]]) :-
-    corr_final_c(Input, Tag).                      % Directly match the invariable final
+    corr_final_c(Input, Tag).
+
+% Branch 2: Extended -> e.g., kiam-a, kiom-o-j
+analyze_final(Input, [[BaseChars, BaseTag]|Rest]) :-
+    corr_final_c(BaseChars, BaseTag),
+    append(BaseChars, TailPart, Input),
+    TailPart \= [],
+    tail(TailPart, Rest).
