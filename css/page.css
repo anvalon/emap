@@ -10,7 +10,7 @@
    ----------------------------------------------------------------- */
 
 /* Main wrapper for the entire application interface */
-#div-container {
+#div-page {
   background: #efefef;       /* Light grey background to distinguish from body */
   padding: 20px 25px;        /* Spacing inside the main card */
   border-radius: 8px;        /* Soft corners for a professional look */
