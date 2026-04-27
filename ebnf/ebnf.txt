@@ -1,39 +1,49 @@
-/* --- 0. Words */
-word      = {word_part} word_head 
-word_head = free_extended | corr_extended | bound_extended;
-word_part = free_complete | corr_complete | bound_complete;
+/* --- 0. Word */
+% word      = {word_part} word_head;
+% word_head = atom_ext | corr_ext | root_ext;
+% word_part = atom_com | corr | root_aff;
+% root_com  = (root_aff ["i"] mod_root) | (root_aff ["o" | "e"] nmd_root);
+% nmd_root  = root - mod_root;
+% mod_root  = "pov" | "dev" | "vol";
 
-/* --- 1. Free roots */
-free_extended = {prefix} free_root ([tail] | {suffix} tail);
-free_complete = free_affixed [nominal_ending] | free_excepted;
-free_excepted = {prefix} "si" accusative_ending;
-free_affixed  = {prefix} free_root {suffix};
-free_root     = "en" | "al" | "de" | "por" | "ankaŭ" | ...;
+word      = word_head;
+word_head = corr_ext | root_ext;
 
-/* --- 2. Correlatives */
-corr_extended = corr_root (corr_final_a [plural_ending] [accusative_ending]) | (corr_final_b [accusative_ending | (nominal_ending [plural_ending] [accusative_ending])]) |
-                          (corr_final_c [(nominal_ending [plural_ending] [accusative_ending]) | (adverbal_ending [accusative_ending])]);
-corr_complete = corr_root corr_final;
-corr_root     = "ki" | "ti" | "ĉi" | "i" | "neni";
-corr_final    = corr_final_a | corr_final_b | corr_final_c;
-corr_final_a  = "u" | "a";
-corr_final_b  = "e" | "o";
-corr_final_c  = "am" | "al" | "el" | "es" | "om";
+/* --- 1. Atom (standalone root) */
+% atom_ext = {pref} atom_root ([tail] | {suff} tail);
+% atom_com = atom_aff [nom_end] | atom_exc;
+% atom_exc = {pref} "si" acc_end;
+% atom_aff = {pref} atom {suff};
+% atom     = "en" | "al" | "de" | "por" | "ankaŭ" | ...;
 
-/* --- 3. Bound roots */
-bound_extended = bound_complete tail;
-bound_complete = {prefix} bound_root {suffix};
-bound_root     = "dom" | "manĝ" | ...;
+/* --- 2. Correlative */
+corr_ext = (corr_a [plu_end] [acc_end]) | (corr_b [acc_end]) | (corr_c [tail]);
+corr     = corr_a | corr_b | corr_c;
+corr_a   = "kiu"  | "tiu"  | "ĉiu"  | "iu"  | "neniu" |
+           "kia"  | "tia"  | "ĉia"  | "ia"  | "nenia";
+corr_b   = "kio"  | "tio"  | "ĉio"  | "io"  | "nenio" |
+           "kie"  | "tie"  | "ĉie"  | "ie"  | "nenie";
+corr_c   = "kiam" | "tiam" | "ĉiam" | "iam" | "neniam" |
+           "kial" | "tial" | "ĉial" | "ial" | "nenial" |
+           "kiel" | "tiel" | "ĉiel" | "iel" | "neniel" |
+           "kies" | "ties" | "ĉies" | "ies" | "nenies" |
+           "kiom" | "tiom" | "ĉiom" | "iom" | "neniom";
 
-/* --- 4. Affixes */
-prefix = "ek" | "ge" | "re" | ...;
-suffix = "eg" | "et" | "in" | ...;
+/* --- 3. Root (not standalone root) */
+root_ext = root_aff tail;
+root_aff = {pref} root {suff};
+root     = "dom" | "manĝ" | ...;
 
-/* --- 5. Tails */
-tail              = verbal_ending | (nominal_ending [plural_ending] [accusative_ending]) | (adverbal_ending [accusative_ending]);
-verbal_ending     = "i" | "as" | "is" | "os" | "us" | "u";
-nominal_ending    = "o";
-adjectival_ending = "a";
-adverbal_ending   = "e";
-plural_ending     = "j";
-accusative_ending = "n";
+/* --- 4. Affix */
+pref = "ek" | "ge" | "re" | ...;
+suff = "eg" | "et" | "in" | ...;
+
+/* --- 5. Tail */
+tail    = vrb_end | ((nom_end | adj_end) [plu_end] [acc_end]) | (adv_end [acc_end]);
+end     = vrb_end | nom_end | adj_end | adv_end | plu_end | acc_end;
+vrb_end = "i" | "as" | "is" | "os" | "us" | "u";
+nom_end = "o";
+adj_end = "a";
+adv_end = "e";
+plu_end = "j";
+acc_end = "n";
