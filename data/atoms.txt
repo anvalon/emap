@@ -42,6 +42,8 @@ du
 dum
 dum
 e
+ek
+eks
 ekster
 el
 en
@@ -55,7 +57,9 @@ go
 ĝis
 ĝo
 ha
+halt
 he
+help
 hieraŭ
 ho
 ho
