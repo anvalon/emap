@@ -6,68 +6,16 @@
 
 function prolog_analyze($word) {
 
-$tag_descriptions = [
+    $tag_desc = [
         'pre' => 'prefikso',
         'suf' => 'sufikso',
         'rad' => 'radiko',
-        'aku' => 'finaĵo',
-        'plu' => 'finaĵo',
-        'adv' => 'finaĵo',
-        'adj' => 'finaĵo',
-        'sub' => 'finaĵo',
-        'inf' => 'finaĵo',
-        'pzn' => 'finaĵo',
-        'prt' => 'finaĵo',
-        'fut' => 'finaĵo',
-        'kon' => 'finaĵo',
-        'vol' => 'finaĵo',
-        /* Correlatives */
-        'rel' => 'radiko',
-        'mnt' => 'radiko',
-        'omn' => 'radiko',
-        'ned' => 'radiko',
-        'neg' => 'radiko',
-        'ind' => 'finaĵo',
-        'obj' => 'finaĵo',
-        'eco' => 'finaĵo',
-        'lok' => 'finaĵo',
-        'tmp' => 'finaĵo',
-        'mot' => 'finaĵo',
-        'man' => 'finaĵo',
-        'pos' => 'finaĵo',
-        'kvn' => 'finaĵo',
     ];
 
-$class_map = [
-        'pre' => 'prefikso',
-        'suf' => 'sufikso',
-        'rad' => 'radiko',
-        'aku' => 'finaĵo',
-        'plu' => 'finaĵo',
-        'sub' => 'finaĵo',
-        'adj' => 'finaĵo',
-        'adv' => 'finaĵo',
-        'inf' => 'finaĵo',
-        'pzn' => 'finaĵo',
-        'prt' => 'finaĵo',
-        'fut' => 'finaĵo',
-        'kon' => 'finaĵo',
-        'vol' => 'finaĵo',
-        /* Correlatives */
-        'rel' => 'radiko',
-        'mnt' => 'radiko',
-        'omn' => 'radiko',
-        'ned' => 'radiko',
-        'neg' => 'radiko',
-        'ind' => 'finaĵo',
-        'obj' => 'finaĵo',
-        'eco' => 'finaĵo',
-        'lok' => 'finaĵo',
-        'tmp' => 'finaĵo',
-        'mot' => 'finaĵo',
-        'man' => 'finaĵo',
-        'pos' => 'finaĵo',
-        'kvn' => 'finaĵo',
+    $class_map = [
+        'pre' => 'prefix',
+        'suf' => 'suffix',
+        'rad' => 'root',
     ];
 
     if (empty($word)) return null;
@@ -93,14 +41,14 @@ $class_map = [
     $data = json_decode($output, true);
 
     if (!$data || !isset($data['status']) || $data['status'] === 'error') {
-        return "<div class='risultato'>Morfemo ne trovita por <strong>" . htmlspecialchars($word) . "</strong>.</div>";
+        return;
     }
 
     // Generate HTML Tiles for results
     $html_output = "";
     foreach ($data['solutions'] as $index => $sol) {
         
-        $html_output .= "<div class='scomposizione'>";
+        $html_output .= "<div class='result-text'>";
         $morfemi = explode('-', $sol);
         
         foreach ($morfemi as $m) {
@@ -108,11 +56,10 @@ $class_map = [
                 $text = $matches[1];
                 $tag = $matches[2];
                 
-                $css_class = $class_map[$tag] ?? 'disigilo';
-                // Qui usiamo $tag_descriptions per mostrare la parola intera
-                $full_tag_name = $tag_descriptions[$tag] ?? $tag;
+                $css_class = $class_map[$tag] ?? 'ending';
+                $full_tag_name = $tag_desc[$tag] ?? 'finaĵo';
 
-                $html_output .= "<span class='morfemo $css_class'>" . htmlspecialchars($text) . "<span class='etikedo'>" . htmlspecialchars($full_tag_name) . "</span></span>";
+                $html_output .= "<span class='morph $css_class'>" . htmlspecialchars($text) . "<span class='label'>" . htmlspecialchars($full_tag_name) . "</span></span>";
             }
         }        
         $html_output .= "</div>";
