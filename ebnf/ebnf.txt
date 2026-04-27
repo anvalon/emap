@@ -16,8 +16,8 @@ corr_extended = corr_root (corr_final_a [plural_ending] [accusative_ending]) | (
 corr_complete = corr_root corr_final;
 corr_root     = "ki" | "ti" | "ĉi" | "i" | "neni";
 corr_final    = corr_final_a | corr_final_b | corr_final_c;
-corr_final_a  = "u" | "o" | "a";
-corr_final_b  = "e";
+corr_final_a  = "u" | "a";
+corr_final_b  = "e" | "o";
 corr_final_c  = "am" | "al" | "el" | "es" | "om";
 
 /* --- 3. Bound roots */
