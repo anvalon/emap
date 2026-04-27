@@ -48,9 +48,7 @@ tail(T, [[Chars, Tag]|Rest]) :-
 check_jn([], []).
 check_jn([j], [[[j], Tag]]) :- ending([j], Tag), !.
 check_jn([n], [[[n], Tag]]) :- ending([n], Tag), !.
-check_jn([j, n], [[[j], T1], [[n], T2]]) :- 
-    ending([j], T1), 
-    ending([n], T2), !.
+check_jn([j, n], [[[j], T1], [[n], T2]]) :- ending([j], T1), ending([n], T2), !.
 
 check_n([], []).
 check_n([n], [[[n], Tag]]) :- ending([n], Tag), !.  

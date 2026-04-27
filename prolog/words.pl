@@ -18,8 +18,8 @@
 % --- External Dependencies Declarations ---
 % These declarations prevent "undefined procedure" errors during compilation
 % Inform Prolog that bound_extended/2 is defined elsewhere
-:- discontiguous bound_extended/2.
-:- discontiguous correlative_extended/2.
+:- discontiguous root_extended/2.
+:- discontiguous corr_extended/2.
 
 % Main predicate to validate and segment a word.
 % Now strictly focused on the morphological definition.
@@ -29,8 +29,8 @@ word(CharList, Output) :-
 % Section 0: word_head
 % Dispatches the word head to the appropriate morphological category
 word_head(In, Output) :-
-    correlative_extended(In, Output),
+    corr_extended(In, Output),
     !.
 
 word_head(In, Output) :-
-    bound_extended(In, Output).
+    root_extended(In, Output).
