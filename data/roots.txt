@@ -2639,14 +2639,8 @@ cunam
 ĉeviot
 ĉevron
 ĉi
-ĉia
-ĉial
-ĉiam
 ĉibuk
 ĉiĉeron
-ĉie
-ĉiel
-ĉies
 ĉif
 ĉifĉaf
 ĉifon
@@ -2665,8 +2659,6 @@ cunam
 ĉinĉil
 ĉingdaŭ
 ĉinghaj
-ĉio
-ĉiom
 ĉip
 ĉips
 ĉir
@@ -2675,7 +2667,6 @@ cunam
 ĉirp
 ĉister
 ĉit
-ĉiu
 ĉiz
 ĉizoj
 ĉjiĉjihar
@@ -6121,9 +6112,6 @@ huz
 ĥorsabad
 ĥot
 ĥuram
-ia
-ial
-iam
 ibeks
 iber
 iberis
@@ -6150,9 +6138,6 @@ idomene
 idu
 idume
 idus
-ie
-iel
-ies
 ifigeni
 ifrit
 igl
@@ -6466,7 +6451,6 @@ invit
 invok
 involuci
 involukr
-iom
 ion
 ioni
 ionik
@@ -6522,7 +6506,6 @@ iterbi
 itiner
 itol
 itri
-iu
 iv
 ivan
 izabela
@@ -7446,9 +7429,6 @@ ket
 keten
 ketognat
 keton
-kia
-kial
-kiam
 kiang
 kiant
 kiasm
@@ -7459,9 +7439,6 @@ kibuc
 kiĉ
 kidnap
 kidron
-kie
-kiel
-kies
 kiev
 kigali
 kijl
@@ -7497,8 +7474,6 @@ kinkon
 kinolin
 kinon
 kinŝas
-kio
-kiom
 kiosk
 kiot
 kipr
@@ -7531,7 +7506,6 @@ kiti
 kitid
 kitin
 kiton
-kiu
 kiv
 kivi
 kjongĵu
@@ -10492,15 +10466,6 @@ neme
 nemert
 nemez
 neni
-nenia
-nenial
-neniam
-nenie
-neniel
-nenies
-nenio
-neniom
-neniu
 neodim
 neofit
 neofron
@@ -14980,9 +14945,6 @@ teŭkri
 teŭton
 tez
 teze
-tia
-tial
-tiam
 tiamin
 tianŝan
 tiar
@@ -14998,9 +14960,6 @@ tibul
 tibuŝen
 tician
 tiĉin
-tie
-tiel
-ties
 tiest
 tif
 tife
@@ -15048,10 +15007,8 @@ tinn
 tint
 tinunkol
 tinus
-tio
 tiofen
 tiol
-tiom
 tion
 tionil
 tip
@@ -15086,7 +15043,6 @@ titikak
 titol
 titr
 titular
-tiu
 tizan
 tizanopter
 tizanur
