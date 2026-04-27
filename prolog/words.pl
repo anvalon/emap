@@ -29,7 +29,8 @@ word(CharList, Output) :-
 % Section 0: word_head
 % Dispatches the word head to the appropriate morphological category
 word_head(In, Output) :-
-    correlative_extended(In, Output).
+    correlative_extended(In, Output),
+    !.
 
 word_head(In, Output) :-
     bound_extended(In, Output).
