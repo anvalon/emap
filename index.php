@@ -1,5 +1,5 @@
 <?php
-    require_once 'prolog.php';
+    require_once 'analyzer.php';
 
     // Recupero la parola dal POST
     $testo_da_analizzare = $_POST['input'] ?? null;
@@ -31,13 +31,14 @@
             <div id="div-content">
                 <?php if ($testo_da_analizzare): ?>
                     <?php 
+                        $analyzer = new Analyzer();
                         $words = explode(' ', trim($testo_da_analizzare));
                         
                         foreach ($words as $word) {
                             if (empty($word)) continue;
                             echo "<div class='result'>";
                             echo "<div class='analysis'>" . htmlspecialchars($word) . "</div>";
-                            echo prolog_analyze($word);
+                            echo $analyzer->analyze($word);;
                             echo "</div>";
                         }
                     ?>
@@ -57,11 +58,12 @@
                     
                     <div id="div-examples-title">Ekzemploj:</div>
                     <?php 
+                        $analyzer = new Analyzer();
                         $test = ['malsanulejon', 'belegaj', 'malametaj', 'remanĝetegindas', 'plenumita'];
                         foreach ($test as $t) {
                             echo "<div class='result'>";
                             echo "<div class='analysis'>" . htmlspecialchars($t) . "</div>";
-                            echo prolog_analyze($t);
+                            echo $analyzer->analyze($t);;
                             echo "</div>";
                         }
                     ?>
