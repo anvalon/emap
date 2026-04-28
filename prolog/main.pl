@@ -21,8 +21,8 @@
 :- ensure_loaded(format).    % Formatting utilities
 :- ensure_loaded(files).     % File management
 :- ensure_loaded(tails).     % Grammatical endings
-:- ensure_loaded(prefixes).  % Recursive prefix logic                                     
-:- ensure_loaded(suffixes).  % Recursive suffix logic
+:- ensure_loaded(affixes).   % Recursive prefix and suffix logic
+:- ensure_loaded(tinies).    % Tinies logic
 :- ensure_loaded(corrs).     % Correlative logic
 :- ensure_loaded(roots).     % Root logic
 :- ensure_loaded(words).     % Main word logic
@@ -31,7 +31,7 @@
 % analyze/2: Coordination of normalization, analysis, and formatting
 % analyze(+RawInput, -FormattedResult)
 % -----------------------------------------------------------------
-% 1. Takes raw input (string or atom).
+% 1. Takes raw input (string or tiny).
 % 2. Normalizes it to handle Esperanto diacritics.
 % 3. Converts it to a character list for the grammar logic.
 % 4. Executes morphological segmentation.
