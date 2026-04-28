@@ -20,6 +20,7 @@
 % Inform Prolog that bound_extended/2 is defined elsewhere
 :- discontiguous root_extended/2.
 :- discontiguous corr_extended/2.
+:- discontiguous tiny_extended/2.
 
 % Main predicate to validate and segment a word.
 % Now strictly focused on the morphological definition.
@@ -30,6 +31,10 @@ word(CharList, Output) :-
 % Dispatches the word head to the appropriate morphological category
 word_head(In, Output) :-
     corr_extended(In, Output),
+    !.
+
+word_head(In, Output) :-
+    tiny_extended(In, Output), 
     !.
 
 word_head(In, Output) :-
