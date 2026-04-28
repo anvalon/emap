@@ -8,7 +8,7 @@
 
 % --- Dynamic Predicates Declaration ---
 % These predicates are populated at runtime from external files.
-:- dynamic root/1, prefix/1, suffix/1.
+:- dynamic root/1, prefix/1, suffix/1, tiny/1. %
 
 % -----------------------------------------------------------------
 % load_data/0: Logic to resolve paths and load all dictionaries
@@ -23,6 +23,7 @@ load_data :-
     load_from_file('../data/roots.txt',    root),
     load_from_file('../data/prefixes.txt', prefix),
     load_from_file('../data/suffixes.txt', suffix),
+    load_from_file('../data/tinies.txt',   tiny),
     format('--- Dictionaries loaded from relative paths ---~n', []).
 
 % -----------------------------------------------------------------
