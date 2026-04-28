@@ -18,6 +18,8 @@ class StringFormatter {
         'pre' => 'prefikso',
         'suf' => 'sufikso',
         'rad' => 'radiko',
+        'kor' => 'korelativo',
+        'tin' => 'vorteto',
     ];
 
     /**
@@ -27,6 +29,8 @@ class StringFormatter {
         'pre' => 'prefix',
         'suf' => 'suffix',
         'rad' => 'root',
+        'kor' => 'root',
+        'tin' => 'root',
     ];
 
     /**
