@@ -1,23 +1,67 @@
 /* --- 0. Word */
-% word      = {word_part} word_head;
-% word_head = atom_ext | corr_ext | root_ext;
-% word_part = atom_com | corr | root_aff;
-% root_com  = (root_aff ["i"] mod_root) | (root_aff ["o" | "e"] nmd_root);
-% nmd_root  = root - mod_root;
-% mod_root  = "pov" | "dev" | "vol";
-
 word      = word_head;
-word_head = corr_ext | root_ext;
+word_head = corr_ext | tiny_ext | root_wrd;
 
-/* --- 1. Atom (standalone root) */
-% atom_ext = {pref} atom_root ([tail] | {suff} tail);
-% atom_com = atom_aff [nom_end] | atom_exc;
-% atom_exc = {pref} "si" acc_end;
-% atom_aff = {pref} atom {suff};
-% atom     = "en" | "al" | "de" | "por" | "ankaŭ" | ...;
+ * word      = {word_part} word_head;
+ * word_head = tiny_ext | corr_ext | root_wrd;
+ * word_part = tiny_com | corr | root_aff;
+ * root_com  = (root_aff ["i"] mod_root) | (root_aff ["o" | "e"] nmd_root);
+ * nmd_root  = root - mod_root;
+ * mod_root  = "pov" | "dev" | "vol";
+ *
+ * tiny_com = tiny_aff [sub_end] | tiny_exc;
+ * tiny_exc = {pref} "si" acc_end;
+ * tiny_aff = {pref} tiny {suff};
 
-/* --- 2. Correlative */
-corr_ext = (corr_a [plu_end] [acc_end]) | (corr_b [acc_end]) | (corr_c [tail]);
+
+
+
+/* -------------------------------------------------------------------------------------------------------------------
+ * 1. Tiny (standalone root)
+ * ------------------------------------------------------------------------------------------------------------------- */
+ * "Tinies" are standalone roots, such as prepositions, conjunctions, or adverbs, which do not strictly require a
+ * mandatory ending (tail) to function within a sentence.
+ *
+ * The application rules for an extended tiny (tiny_ext) are:
+ * 1. {pref} tiny [tail]      -> a tiny preceded by optional prefixes and optionally followed by a tail.
+ * 2. {pref} tiny {suff} tail -> if suffixes are added to a tiny, a final ending (tail) becomes mandatory.
+ *
+ * Examples of usage:
+ * 1.   al, de, en        (simple tinies).
+ * 2.   antaŭ-a           (tiny + adjectival ending).
+ * 3.   per-e             (tiny + adverbial ending).
+ * 4.   kun-ul-o          (tiny + suffix + substantive ending).
+ * 5.   pra-antaŭ-a       (prefis + tiny + adjectival ending).
+ * ------------------------------------------------------------------------------------------------------------------- */
+tiny_ext = {pref} tiny [tail] |
+           {pref} tiny {suff} tail;
+tiny     = "en" | "al" | "de" | "por" | "ankaŭ" | ...;
+
+/* -------------------------------------------------------------------------------------------------------------------
+ * 2. Correlative
+ * ------------------------------------------------------------------------------------------------------------------- */
+ * "Correlatives" are a structured set of pro-forms used to express relations such as questions, demonstrations, or
+ * generalizations. They consist of a prefix and a specific ending, but are considered as standalone words. So they
+ * are a subcategory of tinies, and are handled separately as their composition rules are particular.
+ *
+ * The application rules are the following:
+ * 1. corr_a -> correlatives that can take both plural and accusative endings (kiu, tiu, ĉiu, iu, neniu, kia, etc.).
+ * 2. corr_b -> correlatives that can take only the accusative ending (kio, tio, ĉio, io, nenio, kie, etc.).
+ * 3. corr_c -> correlatives that can be optionally followed by a standard tail (kiam, tiam, kiel, etc.).
+ *
+ * The composition rules for an extended correlative (corr_ext) are:
+ * - corr_a [plu_end] [acc_end] -> can express number and case.
+ * - corr_b [acc_end]           -> can express case only.
+ * - corr_c [tail]              -> can be modified by a standard ending.
+ *
+ * Examples of usage:
+ * 1.   kiu-j-n    (interrogative + plural + accusative).
+ * 2.   tio-n      (demonstrative + accusative).
+ * 3.   tiam-a     (temporal correlative + adjectival ending).
+ * ------------------------------------------------------------------------------------------------------------------- */
+corr_ext = (corr_a [plu_end] [acc_end]) |
+           (corr_b [acc_end]) |
+           (corr_c [tail]);
 corr     = corr_a | corr_b | corr_c;
 corr_a   = "kiu"  | "tiu"  | "ĉiu"  | "iu"  | "neniu" |
            "kia"  | "tia"  | "ĉia"  | "ia"  | "nenia";
@@ -29,21 +73,98 @@ corr_c   = "kiam" | "tiam" | "ĉiam" | "iam" | "neniam" |
            "kies" | "ties" | "ĉies" | "ies" | "nenies" |
            "kiom" | "tiom" | "ĉiom" | "iom" | "neniom";
 
-/* --- 3. Root (not standalone root) */
-root_ext = root_aff tail;
+/* -------------------------------------------------------------------------------------------------------------------
+ * 3. Root (bound root)
+ * ------------------------------------------------------------------------------------------------------------------- */
+ * With "root" we mean a not-standalone root (bound root), meaning it requires a mandatory final ending (tail) to form
+ * a complete word. 
+ *
+ * The application rules are the following:
+ * 1. root_wrd -> the complete word formed by an affixed root and its necessary ending (tail).
+ * 2. root_aff -> the morphological core of the word, consisting of the root itself plus any optional affixes.
+ *
+ * The resulting structure for a root-based word is:
+ * {pref} root {suff} tail -> where the root is surrounded by optional affixes and followed by a mandatory tail.
+ *
+ * Examples of usage:
+ * 1. pra-dom-o           (prefix + root + ending).
+ * 2. dom-et-o            (root + suffix + ending).
+ * 3. pra-dom-et-o        (prefix + root + suffix + ending).
+ * 4. pra-dom-et-ar-o     (prefix + root + suffix + suffix + ending).
+ * 5. exs-pra-dom-et-ar-o (prefix + prefix + root + suffix + suffix + ending).
+ * ------------------------------------------------------------------------------------------------------------------- */
+root_wrd = root_aff tail;
 root_aff = {pref} root {suff};
 root     = "dom" | "manĝ" | ...;
 
-/* --- 4. Affix */
+/* -------------------------------------------------------------------------------------------------------------------
+ * 4. Affix
+ * ------------------------------------------------------------------------------------------------------------------- */
+ * With "affix" we mean a prefix or a suffix, morphological elements used to modify the meaning of a bound root (root)
+ * to form an affixed root (root_aff), or of a standalone root (tiny) to form an affixed tiny (tiny_aff)
+ *
+ * The application rules are the following:
+ * 1. prefixes (pref) -> attached before the root and can be multiple.
+ * 2. suffixes (suff) -> attached after the root, before the final ending (tail) and can be multiple.
+ *
+ * The resulting morphological root structures are:
+ * a. {pref} root {suff} -> which means an optional sequence of prefixes, a root, and an optional sequence of suffixes.
+ * b. {pref} tiny {suff} -> which means an optional sequence of prefixes, a tiny, and an optional sequence of suffixes.
+ *
+ * Examples of usage:
+ * 1. pra-dom-o           (prefix + root + ending).
+ * 2. dom-et-o            (root + suffix + ending).
+ * 3. pra-dom-et-o        (prefix + root + suffix + ending).
+ * 4. pra-dom-et-ar-o     (prefix + root + suffix + suffix + ending).
+ * 5. exs-pra-dom-et-ar-o (prefix + prefix + root + suffix + suffix + ending).
+ * ------------------------------------------------------------------------------------------------------------------- */
 pref = "ek" | "ge" | "re" | ...;
 suff = "eg" | "et" | "in" | ...;
 
-/* --- 5. Tail */
-tail    = vrb_end | ((nom_end | adj_end) [plu_end] [acc_end]) | (adv_end [acc_end]);
-end     = vrb_end | nom_end | adj_end | adv_end | plu_end | acc_end;
+/* -------------------------------------------------------------------------------------------------------------------
+ * 5. Tail
+ * ------------------------------------------------------------------------------------------------------------------- */
+ * With "tail" we mean the final part of a word, which can consist of one or more endings, and which is a necessary part
+ * in root-based words, meaning words created from a bound root (root) (dom-o, ver-a), but which can also be found in
+ * words consisting of a standalone root (tiny) (antaŭ-a, per-e).
+ *
+ * The endings can be of the following types:
+ * 1. verbal endings (i, as, is, os, us, u) -> they are attached directly to the verbal root and CANNOT be followed by other endings
+ * 2. nominal endings (o, a, e, j, n)       -> which observe the following composition rules:
+ *    2.1. substantive ending (o)           -> attached directly to the root and can be followed by the endings -j, -n.
+ *    2.2. adjectival ending (a)            -> attached directly to the root and can be followed by the endings -j, -n.
+ *    2.3. adverbial ending (e)             -> attached directly to the root and can be followed ONLY by the ending -n.
+ *    2.4. plural ending (j)                -> NOT attached directly to the root and can be followed ONLY by the ending -n.
+ *    2.5. accusative ending (n)            -> NOT attached directly to the root and CANNOT be followed by another ending.
+ *
+ * Examples of usage:
+ * 1.   vid-i, vid-as, vid-is, vid-os, vid-us, vid-u.
+ * 2.1. dom-o, dom-o-n, dom-o-j, dom-o-j-n.
+ * 2.2. ver-a, ver-a-n, ver-a-j, ver-a-j-n.
+ * 2.3. dom-e, dome-e-n.
+ * ------------------------------------------------------------------------------------------------------------------- */
+tail    = nom_end | vrb_end;
+nom_end = (sub_end [plu_end] [acc_end]) |
+          (adj_end [plu_end] [acc_end]) |
+          (adv_end [acc_end]);
 vrb_end = "i" | "as" | "is" | "os" | "us" | "u";
-nom_end = "o";
+sub_end = "o";
 adj_end = "a";
 adv_end = "e";
 plu_end = "j";
 acc_end = "n";
+
+/* -------------------------------------------------------------------------------------------------------------------
+ * TO BE IMPLEMENTED YET
+ * -------------------------------------------------------------------------------------------------------------------
+ * word      = {word_part} word_head;
+ * word_head = tiny_ext | corr_ext | root_wrd;
+ * word_part = tiny_com | corr | root_aff;
+ * root_com  = (root_aff ["i"] mod_root) | (root_aff ["o" | "e"] nmd_root);
+ * nmd_root  = root - mod_root;
+ * mod_root  = "pov" | "dev" | "vol";
+ *
+ * tiny_com = tiny_aff [sub_end] | tiny_exc;
+ * tiny_exc = {pref} "si" acc_end;
+ * tiny_aff = {pref} tiny {suff};
+ * ------------------------------------------------------------------------------------------------------------------- */
