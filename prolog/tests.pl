@@ -22,7 +22,7 @@
 % -----------------------------------------------------------------
 % run_tests/0-1: Test Engine Entry Points
 % -----------------------------------------------------------------
-run_tests :- run_tests(all).
+run_tests :- run_tests(all), !.
 
 run_tests(Visibility) :-
     format('~n--- Starting Tests (Morpheme comparison) ---~n', []),
@@ -32,7 +32,8 @@ run_tests(Visibility) :-
     split_tests(AllTests, Blocks),
     % Execute blocks and collect final integer totals
     run_blocks(Blocks, Visibility, 0, 0, TotalP, TotalF),
-    format('~n--- Test Results: ~w Passed, ~w Failed ---~n', [TotalP, TotalF]).
+    format('~n--- Test Results: ~w Passed, ~w Failed ---~n', [TotalP, TotalF]),
+    !.
 
 % -----------------------------------------------------------------
 % split_tests/2: Helper to group tests by section
