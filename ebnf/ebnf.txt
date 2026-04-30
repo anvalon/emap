@@ -1,23 +1,37 @@
 /* --- 0. Word */
-word      = word_head;
+word      = letter | invariant | word_head;
 word_head = corr_ext | tiny_ext | root_wrd;
 
- * word      = {word_part} word_head;
- * word_head = tiny_ext | corr_ext | root_wrd;
- * word_part = tiny_com | corr | root_aff;
- * root_com  = (root_aff ["i"] mod_root) | (root_aff ["o" | "e"] nmd_root);
- * nmd_root  = root - mod_root;
- * mod_root  = "pov" | "dev" | "vol";
+/* -------------------------------------------------------------------------------------------------------------------
+ * 1. Letter (alphabet letter)
+ * ------------------------------------------------------------------------------------------------------------------- */
+ * "Letters" represent the individual characters of the alphabet as standalone entities or names. 
+ * In this grammar, they are treated as a basic unit of a word.
  *
- * tiny_com = tiny_aff [sub_end] | tiny_exc;
- * tiny_exc = {pref} "si" acc_end;
- * tiny_aff = {pref} tiny {suff};
-
-
-
+ * The application rules are:
+ * 1. letter -> Represents a single letter name (e.g., "a", "bo", "co", etc.).
+ *
+ * This allows the analyzer to recognize alphabet names which are often used in spelling 
+ * or specific grammatical contexts.
+ * ------------------------------------------------------------------------------------------------------------------- */
+letter = a | bo | co | ...;
 
 /* -------------------------------------------------------------------------------------------------------------------
- * 1. Tiny (standalone root)
+ * 2. Invariant (invariant word)
+ * -------------------------------------------------------------------------------------------------------------------
+ * "Invariants" represent a category of terms that are strictly invariant. 
+ * Unlike "tinies", they cannot take prefixes, suffixes, or grammatical endings (tails).
+ *
+ * The application rules are:
+ * 1. invariant -> Represents a standalone invariant word (e.g., "almenaŭ", "preskaŭ", etc.).
+ *
+ * This category ensures that words which never undergo morphological changes are 
+ * recognized directly, preventing incorrect analysis as roots or extended tinies.
+ * ------------------------------------------------------------------------------------------------------------------- */
+invariant = almenaŭ | ankaŭ | ĉar | preskaŭ | ... ;
+
+/* -------------------------------------------------------------------------------------------------------------------
+ * 3. Tiny (standalone root)
  * ------------------------------------------------------------------------------------------------------------------- */
  * "Tinies" are standalone roots, such as prepositions, conjunctions, or adverbs, which do not strictly require a
  * mandatory ending (tail) to function within a sentence.
@@ -33,12 +47,12 @@ word_head = corr_ext | tiny_ext | root_wrd;
  * 4.   kun-ul-o          (tiny + suffix + substantive ending).
  * 5.   pra-antaŭ-a       (prefis + tiny + adjectival ending).
  * ------------------------------------------------------------------------------------------------------------------- */
-tiny_ext = {pref} tiny [tail] |
-           {pref} tiny {suff} tail;
+tiny_ext = {pref} tiny [tail] | tiny_aff tail;
+tiny_aff = {pref} tiny {suff_std}; /* The tinies do not accept 't' or 'i' as suffixes. */
 tiny     = "en" | "al" | "de" | "por" | "ankaŭ" | ...;
 
 /* -------------------------------------------------------------------------------------------------------------------
- * 2. Correlative
+ * 4. Correlative
  * ------------------------------------------------------------------------------------------------------------------- */
  * "Correlatives" are a structured set of pro-forms used to express relations such as questions, demonstrations, or
  * generalizations. They consist of a prefix and a specific ending, but are considered as standalone words. So they
@@ -74,7 +88,7 @@ corr_c   = "kiam" | "tiam" | "ĉiam" | "iam" | "neniam" |
            "kiom" | "tiom" | "ĉiom" | "iom" | "neniom";
 
 /* -------------------------------------------------------------------------------------------------------------------
- * 3. Root (bound root)
+ * 5. Root (bound root)
  * ------------------------------------------------------------------------------------------------------------------- */
  * With "root" we mean a not-standalone root (bound root), meaning it requires a mandatory final ending (tail) to form
  * a complete word. 
@@ -94,11 +108,17 @@ corr_c   = "kiam" | "tiam" | "ĉiam" | "iam" | "neniam" |
  * 5. exs-pra-dom-et-ar-o (prefix + prefix + root + suffix + suffix + ending).
  * ------------------------------------------------------------------------------------------------------------------- */
 root_wrd = root_aff tail;
-root_aff = {pref} root {suff};
-root     = "dom" | "manĝ" | ...;
+root_aff = root_aff_std | root_aff_num | root_aff_nat;
+root_aff_std = {pref} root_std {suff_std};            /* Case 1: Standard roots - they accept only standard suffixes */
+root_aff_num = {pref} root_num {suff_std | suff_num}; /* Case 2: Numeral roots  - they accept standard suffixes and the "t" suffix */
+root_aff_nat = {pref} root_nat {suff_std | suff_nat}; /* Case 3: National roots - they accept standard suffixes and the "i" suffix */
+root      = root_std | root_num | root_nat;
+root_std  = "dom" | "manĝ" | ... ;
+root_num  = "un" | "du" | "tri" | "kvar" | ... ;
+root_nat  = "ital" | "german" | "franc" | ... ;
 
 /* -------------------------------------------------------------------------------------------------------------------
- * 4. Affix
+ * 6. Affix
  * ------------------------------------------------------------------------------------------------------------------- */
  * With "affix" we mean a prefix or a suffix, morphological elements used to modify the meaning of a bound root (root)
  * to form an affixed root (root_aff), or of a standalone root (tiny) to form an affixed tiny (tiny_aff)
@@ -119,10 +139,13 @@ root     = "dom" | "manĝ" | ...;
  * 5. exs-pra-dom-et-ar-o (prefix + prefix + root + suffix + suffix + ending).
  * ------------------------------------------------------------------------------------------------------------------- */
 pref = "ek" | "ge" | "re" | ...;
-suff = "eg" | "et" | "in" | ...;
+suff      = suff_std | suff_num | suff_nat;
+suff_std  = "eg" | "et" | "in" | ... ;
+suff_num  = "t";  /* Only after root_num */
+suff_nat  = "i";  /* Only after root_nat */
 
 /* -------------------------------------------------------------------------------------------------------------------
- * 5. Tail
+ * 7. Tail
  * ------------------------------------------------------------------------------------------------------------------- */
  * With "tail" we mean the final part of a word, which can consist of one or more endings, and which is a necessary part
  * in root-based words, meaning words created from a bound root (root) (dom-o, ver-a), but which can also be found in
@@ -166,5 +189,31 @@ acc_end = "n";
  *
  * tiny_com = tiny_aff [sub_end] | tiny_exc;
  * tiny_exc = {pref} "si" acc_end;
- * tiny_aff = {pref} tiny {suff};
+ * ------------------------------------------------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------------------------------------------------
+ * TO BE IMPLEMENTED YET
+ * -------------------------------------------------------------------------------------------------------------------
+ * List of tinies with restricted use.
+ * -------------------------------------------------------------------------------------------------------------------
+ * al (pref)
+ * ambaŭ (pref)
+ * ankoraŭ (-an)
+ * apenaŭ (-a)
+ * aŭ (dis-aŭ-o, kaj-aŭ-o, ne-dis-aŭ-o, ne-kaj-aŭ-o)
+ * bis (-i)
+ * ĉe (pref)
+ * de (pref)
+ * hura (hura-i)
+ * inter (pref)
+ * ĵus (-a)
+ * lo (ha lo 'interjekcio')
+ * kvazaŭ (-a, pref)
+ * nu (nu-o)
+ * ol (suff)
+ * por (-a, pref)
+ * pri (-e, pref)
+ * pro (pref)
+ * sed (sed-i)
+ * tra (pref)
  * ------------------------------------------------------------------------------------------------------------------- */
