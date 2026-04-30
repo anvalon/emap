@@ -15,7 +15,6 @@
 % 3. Dynamic Alignment: Arrows and results are vertically 
 %    aligned based on the longest word in each block.
 % -----------------------------------------------------------------
-
 :- ensure_loaded(main).        % Ensure core analyzer is available
 :- ensure_loaded(tests_data).  % Load the database of test cases
 
@@ -25,7 +24,9 @@
 run_tests :- run_tests(all), !.
 
 run_tests(Visibility) :-
-    format('~n--- Starting Tests (Morpheme comparison) ---~n', []),
+    format('~n==================================', []),
+    format('~n          Starting Tests          ', []),
+    format('~n==================================~n', []),
     % Gather all test cases defined in tests_data.pl
     findall(t(Mode, In, Exp), test_case(Mode, In, Exp), AllTests),
     % Group tests into blocks based on 'info' markers
@@ -53,14 +54,37 @@ extract_until_info([H|T], [H|Rest], Remaining) :- extract_until_info(T, Rest, Re
 % -----------------------------------------------------------------
 run_blocks([], _, P, F, P, F).
 run_blocks([[info(Msg)|Tests]|Rest], Visibility, AccP, AccF, TotalP, TotalF) :-
-    format('~n--- ~w ---~n', [Msg]),
-    get_max_length(Tests, MaxL),
-    % Calculate the column position for the '->' arrow for alignment
-    ArrowCol is 13 + MaxL,
-    % Execute tests in the current block
-    run_and_count(Tests, Visibility, ArrowCol, AccP, AccF, NewP, NewF),
-    % Recurse to next block with updated integer counters
+    % 1. Filtriamo i test che producono output in base alla visibilità
+    include(should_show_test(Visibility), Tests, VisibleTests),
+    ( VisibleTests \= [] ->
+        % 2. Se ci sono test da mostrare, stampiamo l'intestazione
+        format('~n--- ~w ---~n', [Msg]),
+        get_max_length(Tests, MaxL),
+        ArrowCol is 13 + MaxL,
+        run_and_count(Tests, Visibility, ArrowCol, AccP, AccF, NewP, NewF)
+    ;   
+        % 3. Altrimenti, contiamo i risultati "silenziosamente" per non perdere i totali
+        run_and_count_silent(Tests, AccP, AccF, NewP, NewF)
+    ),
     run_blocks(Rest, Visibility, NewP, NewF, TotalP, TotalF).
+
+% Helper per determinare se un test deve essere mostrato
+should_show_test(all, t(Mode, _, _)) :- member(Mode, [pos, neg]).
+should_show_test(failed_only, t(pos, In, Exp)) :- 
+    \+ (setof(S, analyze(In, S), Sols), maplist(strip_tags_from_atom, Sols, CleanSols), member(Exp, CleanSols)).
+should_show_test(failed_only, t(neg, In, _)) :- 
+    analyze(In, _). % Fallisce se viene accettato
+
+% Versione silenziosa di run_and_count per mantenere i totali corretti
+run_and_count_silent([], P, F, P, F).
+run_and_count_silent([t(blank,_,_)|T], P, F, RP, RF) :- run_and_count_silent(T, P, F, RP, RF).
+run_and_count_silent([t(pos, In, Exp)|T], P, F, RP, RF) :-
+    (setof(S, analyze(In, S), Sols), maplist(strip_tags_from_atom, Sols, CleanSols), member(Exp, CleanSols) -> 
+        NP is P + 1, NF = F ; NP = P, NF is F + 1),
+    run_and_count_silent(T, NP, NF, RP, RF).
+run_and_count_silent([t(neg, In, _)|T], P, F, RP, RF) :-
+    (analyze(In, _) -> NP = P, NF is F + 1 ; NP is P + 1, NF = F),
+    run_and_count_silent(T, NP, NF, RP, RF).
 
 % -----------------------------------------------------------------
 % run_and_count/7: Executes individual tests and sums results

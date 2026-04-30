@@ -24,6 +24,7 @@ test_case(info, "-----------------------------", _).
 test_case(blank, _, _).
 test_case(info, "NOUNS & INFLECTIONS", _).
 % ---
+test_case(pos, "libro",  'libr-o').
 test_case(pos, "domo",   'dom-o').
 test_case(pos, "domon",  'dom-o-n').
 test_case(pos, "domoj",  'dom-o-j').
@@ -117,6 +118,140 @@ test_case(pos, "virino",     'vir-in-o').
 test_case(pos, "vortaro",    'vort-ar-o').
 test_case(pos, "ŝraŭbingo",  'ŝraŭb-ing-o').
 
+/*
+% --- Section: SUFFIX "i" (national) ---
+% Words with more official suffixes
+test_case(blank, _, _).
+test_case(info, "SUFFIX i (national)", _).
+% ---
+% --- TEST RADICI NAZIONALI (Paesi: rad-i-o) ---
+test_case(pos, "Abĥazio",      'abĥaz-i-o').
+test_case(pos, "Afganio",      'afgan-i-o').
+test_case(pos, "Albanio",      'alban-i-o').
+test_case(pos, "Alĝerio",      'alĝer-i-o').
+test_case(pos, "Amazonio",     'amazon-i-o').
+test_case(pos, "Andaluzio",    'andaluz-i-o').
+test_case(pos, "Anglio",       'angl-i-o').
+test_case(pos, "Arabio",       'arab-i-o').
+test_case(pos, "Armenio",      'armen-i-o').
+test_case(pos, "Aŭstrio",      'aŭstr-i-o').
+test_case(pos, "Aŭstralio",    'aŭstral-i-o').
+test_case(pos, "Baltio",       'balt-i-o').
+test_case(pos, "Bavario",      'bavar-i-o').
+test_case(pos, "Belgio",       'belg-i-o').
+test_case(pos, "Belorusio",    'belorus-i-o').
+test_case(pos, "Bengalio",     'bengal-i-o').
+test_case(pos, "Bolivio",      'boliv-i-o').
+test_case(pos, "Bosnio",       'bosn-i-o').
+test_case(pos, "Bretonio",     'breton-i-o').
+test_case(pos, "Britio",       'brit-i-o').
+test_case(pos, "Bulgario",     'bulgar-i-o').
+test_case(pos, "Ĉeĉenio",      'ĉeĉen-i-o').
+test_case(pos, "Ĉeĥio",        'ĉeĥ-i-o').
+test_case(pos, "Ĉilio",        'ĉil-i-o').
+test_case(pos, "Ĉinio",        'ĉin-i-o').
+test_case(pos, "Danio",        'dan-i-o').
+test_case(pos, "Egiptio",      'egipt-i-o').
+test_case(pos, "Estonio",      'eston-i-o').
+test_case(pos, "Etiopio",      'etiop-i-o').
+test_case(pos, "Eŭskio",       'eŭsk-i-o').
+test_case(pos, "Fiĝio",        'fiĝ-i-o').
+test_case(pos, "Flandrio",     'flandr-i-o').
+test_case(pos, "Francio",      'franc-i-o').
+test_case(pos, "Galegio",      'galeg-i-o').
+test_case(pos, "Gambio",       'gamb-i-o').
+test_case(pos, "Germanio",     'german-i-o').
+test_case(pos, "Ĝibutio",      'ĝibut-i-o').
+test_case(pos, "Grekio",       'grek-i-o').
+test_case(pos, "Guĝaratio",    'guĝarat-i-o').
+test_case(pos, "Haitio",       'hait-i-o').
+test_case(pos, "Hispanio",     'hispan-i-o').
+test_case(pos, "Hungario",     'hungar-i-o').
+test_case(pos, "Indonezio",    'indonez-i-o').
+test_case(pos, "Italio",       'ital-i-o').
+test_case(pos, "Japanio",      'japan-i-o').
+test_case(pos, "Jordanio",     'jordan-i-o').
+test_case(pos, "Jugoslavio",   'jugoslav-i-o').
+test_case(pos, "Karelio",      'karel-i-o').
+test_case(pos, "Kartvelio",    'kartvel-i-o').
+test_case(pos, "Katalunio",    'katalun-i-o').
+test_case(pos, "Kazaĥio",      'kazaĥ-i-o').
+test_case(pos, "Kimrio",       'kimr-i-o').
+test_case(pos, "Kirgizio",     'kirgiz-i-o').
+test_case(pos, "Kolombio",     'kolomb-i-o').
+test_case(pos, "Koreio",       'kore-i-o').
+test_case(pos, "Kroatio",      'kroat-i-o').
+test_case(pos, "Kurdio",       'kurd-i-o').
+test_case(pos, "Latvio",       'latv-i-o').
+test_case(pos, "Libio",        'lib-i-o').
+test_case(pos, "Liberio",      'liber-i-o').
+test_case(pos, "Litovio",      'litov-i-o').
+test_case(pos, "Lucio",        'luc-i-o').
+test_case(pos, "Makedonio",    'makedon-i-o').
+test_case(pos, "Malio",        'mal-i-o').
+test_case(pos, "Malajzio",     'malajz-i-o').
+test_case(pos, "Malavio",      'malav-i-o').
+test_case(pos, "Maŭricio",     'maŭric-i-o').
+test_case(pos, "Maŭritanio",   'maŭritan-i-o').
+test_case(pos, "Mezopotamio",  'mezopotam-i-o').
+test_case(pos, "Mikronezio",   'mikronez-i-o').
+test_case(pos, "Misisipio",    'misisip-i-o').
+test_case(pos, "Moldavio",     'moldav-i-o').
+test_case(pos, "Mongolio",     'mongol-i-o').
+test_case(pos, "Namibio",      'namib-i-o').
+test_case(pos, "Niĝerio",      'niĝer-i-o').
+test_case(pos, "Norvegio",     'norveg-i-o').
+test_case(pos, "Okcitanio",    'okcitan-i-o').
+test_case(pos, "Osetio",       'oset-i-o').
+test_case(pos, "Panĝabio",     'panĝab-i-o').
+test_case(pos, "Persio",       'pers-i-o').
+test_case(pos, "Portugalio",   'portugal-i-o').
+test_case(pos, "Prusio",       'prus-i-o').
+test_case(pos, "Rumanio",      'ruman-i-o').
+test_case(pos, "Rusio",        'rus-i-o').
+test_case(pos, "Saksio",       'saks-i-o').
+test_case(pos, "Sameio",       'same-i-o').
+test_case(pos, "Sardio",       'sard-i-o').
+test_case(pos, "Serbio",       'serb-i-o').
+test_case(pos, "Siberio",      'siber-i-o').
+test_case(pos, "Sirio",        'sir-i-o').
+test_case(pos, "Skandinavio",  'skandinav-i-o').
+test_case(pos, "Slovakio",     'slovak-i-o').
+test_case(pos, "Slovenio",     'sloven-i-o').
+test_case(pos, "Somalio",      'somal-i-o').
+test_case(pos, "Sovetunio",    'sovetun-i-o').
+test_case(pos, "Svedio",       'sved-i-o').
+test_case(pos, "Taĝikio",      'taĝik-i-o').
+test_case(pos, "Tamilio",      'tamil-i-o').
+test_case(pos, "Tanzanio",     'tanzan-i-o').
+test_case(pos, "Tatario",      'tatar-i-o').
+test_case(pos, "Tunizio",      'tuniz-i-o').
+test_case(pos, "Turkio",       'turk-i-o').
+test_case(pos, "Turkmenio",    'turkmen-i-o').
+test_case(pos, "Tuvio",        'tuv-i-o').
+test_case(pos, "Ukrainio",     'ukrain-i-o').
+test_case(pos, "Uzbekio",      'uzbek-i-o').
+test_case(pos, "Valonio",      'valon-i-o').
+test_case(pos, "Vestfalio",    'vestfal-i-o').
+test_case(pos, "Vjetnamio",    'vjetnam-i-o').
+test_case(pos, "Zambio",       'zamb-i-o').
+
+% --- Section: SUFFIX "t" (numeral) ---
+% Words with more official suffixes
+test_case(blank, _, _).
+test_case(info, "SUFFIX t (numeral)", _).
+% ---
+test_case(pos, "duuo",     'du-t-o').
+test_case(pos, "trito",    'tri-t-o').
+test_case(pos, "kvarto",   'kvar-t-o').
+test_case(pos, "kvinto",   'kvin-t-o').
+test_case(pos, "sesto",    'ses-t-o').
+test_case(pos, "septo",    'sep-t-o').
+test_case(pos, "okto",     'ok-t-o').
+test_case(pos, "naŭto",    'naŭ-t-o').
+test_case(pos, "dekto",    'dek-t-o').
+*/
+
 % --- Section: MORE SUFFIXES ---
 % Words with more official suffixes
 test_case(blank, _, _).
@@ -133,6 +268,27 @@ test_case(pos, "ridendema",   'rid-end-em-a').
 test_case(pos, "ridetante",   'rid-et-ant-e').
 test_case(pos, "testarero",   'test-ar-er-o').
 test_case(pos, "vortarego",   'vort-ar-eg-o').
+
+% --- Section: MORE PREFIXES AND SUFFIXES ---
+% Words with more official prefixes and suffixes
+test_case(blank, _, _).
+test_case(info, "MORE PREFIXES AND SUFFIXES", _).
+% ---
+test_case(pos, "ĉefanaro",     'ĉef-an-ar-o').
+test_case(pos, "dispraino",    'dis-pra-in-o').
+test_case(pos, "disreigi",     'dis-re-ig-i').
+test_case(pos, "eksboujeco",   'eks-bo-uj-ec-o').
+test_case(pos, "eksejestro",   'eks-ej-estr-o').
+test_case(pos, "geiĝo",        'ge-iĝ-o').
+test_case(pos, "malegeco",     'mal-eg-ec-o').
+test_case(pos, "maleti",       'mal-et-i').
+test_case(pos, "malendema",    'mal-end-em-a').
+test_case(pos, "misetante",    'mis-et-ant-e').
+test_case(pos, "praarego",     'pra-ar-eg-o').
+test_case(pos, "redisenda",    're-dis-end-a').
+test_case(pos, "reegoj",       're-eg-o-j').
+test_case(pos, "reetegindas",  're-et-eg-ind-as').
+
 
 % --- Section: MORE PREFIXES AND SUFFIXES ---
 % Words with more official prefixes and suffixes
@@ -315,19 +471,76 @@ test_case(pos, "malnenio",  'mal-neni-o').
 test_case(pos, "neniego",   'neni-eg-o').
 test_case(pos, "renenieto", 're-neni-et-o').
 
+% --- Section: LETTERS ---
+% These cases abaout tinies (standalone roots).
+test_case(blank, _, _).
+test_case(info, "LETTERS", _).
+% ---
+% single
+test_case(pos, "a",  'a').
+test_case(pos, "bo", 'bo').
+test_case(pos, "co", 'co').
+test_case(pos, "ĉo", 'ĉo').
+test_case(pos, "do", 'do').
+test_case(pos, "e",  'e').
+test_case(pos, "fo", 'fo').
+test_case(pos, "go", 'go').
+test_case(pos, "ĝo", 'ĝo').
+test_case(pos, "ho", 'ho').
+test_case(pos, "jo", 'jo').
+test_case(pos, "ĵo", 'ĵo').
+test_case(pos, "ĥo", 'ĥo').
+test_case(pos, "ko", 'ko').
+test_case(pos, "lo", 'lo').
+test_case(pos, "mo", 'mo').
+test_case(pos, "no", 'no').
+test_case(pos, "o",  'o').
+test_case(pos, "po", 'po').
+test_case(pos, "ro", 'ro').
+test_case(pos, "so", 'so').
+test_case(pos, "ŝo", 'ŝo').
+test_case(pos, "to", 'to').
+test_case(pos, "u",  'u').
+test_case(pos, "ŭo", 'ŭo').
+test_case(pos, "vo", 'vo').
+test_case(pos, "zo", 'zo').
+
+% --- Section: INVARIANTS ---
+% These cases abaout tinies (standalone roots).
+test_case(blank, _, _).
+test_case(info, "INVARIANTS", _).
+% ---
+test_case(pos, "almenaŭ",   'almenaŭ').
+test_case(pos, "ankaŭ",     'ankaŭ').
+test_case(pos, "ĉar",       'ĉar').
+test_case(pos, "ĉi",        'ĉi').
+test_case(pos, "ĉu",        'ĉu').
+test_case(pos, "da",        'da').
+test_case(pos, "des",       'des').
+test_case(pos, "eĉ",        'eĉ').
+test_case(pos, "ha",        'ha').
+test_case(pos, "he",        'he').
+test_case(pos, "ja",        'ja').
+test_case(pos, "je",        'je').
+test_case(pos, "ju",        'ju').
+test_case(pos, "kaj",       'kaj').
+test_case(pos, "ke",        'ke').
+test_case(pos, "kvankam",   'kvankam').
+test_case(pos, "la",        'la').
+test_case(pos, "nek",       'nek').
+test_case(pos, "se",        'se').
+test_case(pos, "tamen",     'tamen').
+
 % --- Section: TINIES ---
 % These cases abaout tinies (standalone roots).
 test_case(blank, _, _).
 test_case(info, "TINIES", _).
 % ---
 % single
-test_case(pos, "a",         'a').
 test_case(pos, "adiaŭ",     'adiaŭ').
 test_case(pos, "ajn",       'ajn').
 test_case(pos, "al",        'al').
-test_case(pos, "almenaŭ",   'almenaŭ').
 test_case(pos, "ambaŭ",     'ambaŭ').
-test_case(pos, "ankaŭ",     'ankaŭ').
 test_case(pos, "ankoraŭ",   'ankoraŭ').
 test_case(pos, "anstataŭ",  'anstataŭ').
 test_case(pos, "antaŭ",     'antaŭ').
@@ -336,88 +549,55 @@ test_case(pos, "apud",      'apud').
 test_case(pos, "aŭ",        'aŭ').
 test_case(pos, "baldaŭ",    'baldaŭ').
 test_case(pos, "bis",       'bis').
-test_case(pos, "bo",        'bo').
 test_case(pos, "cent",      'cent').
-test_case(pos, "ĉar",       'ĉar').
 test_case(pos, "ĉe",        'ĉe').
-test_case(pos, "ĉi",        'ĉi').
 test_case(pos, "ĉirkaŭ",    'ĉirkaŭ').
-test_case(pos, "ĉo",        'ĉo').
-test_case(pos, "ĉu",        'ĉu').
-test_case(pos, "co",        'co').
-test_case(pos, "da",        'da').
 test_case(pos, "de",        'de').
 test_case(pos, "dek",       'dek').
-test_case(pos, "des",       'des').
-test_case(pos, "do",        'do').
 test_case(pos, "du",        'du').
 test_case(pos, "dum",       'dum').
-test_case(pos, "e",         'e').
 test_case(pos, "ek",        'ek').
 test_case(pos, "eks",       'eks').
 test_case(pos, "ekster",    'ekster').
 test_case(pos, "el",        'el').
 test_case(pos, "en",        'en').
-test_case(pos, "eĉ",        'eĉ').
 test_case(pos, "fi",        'fi').
-test_case(pos, "fo",        'fo').
 test_case(pos, "for",       'for').
-test_case(pos, "go",        'go').
 test_case(pos, "ĝi",        'ĝi').
 test_case(pos, "ĝis",       'ĝis').
-test_case(pos, "ĝo",        'ĝo').
-test_case(pos, "ha",        'ha').
 test_case(pos, "halt",      'halt').
-test_case(pos, "he",        'he').
 test_case(pos, "help",      'help').
 test_case(pos, "hieraŭ",    'hieraŭ').
-test_case(pos, "ho",        'ho').
 test_case(pos, "hodiaŭ",    'hodiaŭ').
 test_case(pos, "hura",      'hura').
-test_case(pos, "ĥo",        'ĥo').
 test_case(pos, "i",         'i').
 test_case(pos, "ili",       'ili').
 test_case(pos, "inter",     'inter').
-test_case(pos, "ja",        'ja').
 test_case(pos, "jam",       'jam').
-test_case(pos, "je",        'je').
 test_case(pos, "jen",       'jen').
 test_case(pos, "jes",       'jes').
-test_case(pos, "jo",        'jo').
-test_case(pos, "ju",        'ju').
-test_case(pos, "ĵo",        'ĵo').
 test_case(pos, "ĵus",       'ĵus').
-test_case(pos, "kaj",       'kaj').
-test_case(pos, "ke",        'ke').
-test_case(pos, "ko",        'ko').
 test_case(pos, "kontraŭ",   'kontraŭ').
 test_case(pos, "krom",      'krom').
 test_case(pos, "kun",       'kun').
-test_case(pos, "kvankam",   'kvankam').
 test_case(pos, "kvar",      'kvar').
 test_case(pos, "kvazaŭ",    'kvazaŭ').
 test_case(pos, "kvin",      'kvin').
-test_case(pos, "la",        'la').
 test_case(pos, "laŭ",       'laŭ').
 test_case(pos, "li",        'li').
-test_case(pos, "lo",        'lo').
 test_case(pos, "malgraŭ",   'malgraŭ').
 test_case(pos, "mem",       'mem').
 test_case(pos, "mi",        'mi').
 test_case(pos, "mil",       'mil').
 test_case(pos, "minus",     'minus').
-test_case(pos, "mo",        'mo').
 test_case(pos, "morgaŭ",    'morgaŭ').
 test_case(pos, "naŭ",       'naŭ').
 test_case(pos, "ne",        'ne').
-test_case(pos, "nek",       'nek').
 test_case(pos, "ni",        'ni').
-test_case(pos, "no",        'no').
 test_case(pos, "nu",        'nu').
 test_case(pos, "nul",       'nul').
 test_case(pos, "nun",       'nun').
 test_case(pos, "nur",       'nur').
-test_case(pos, "o",         'o').
 test_case(pos, "ok",        'ok').
 test_case(pos, "ol",        'ol').
 test_case(pos, "oni",       'oni').
@@ -426,50 +606,38 @@ test_case(pos, "plej",      'plej').
 test_case(pos, "pli",       'pli').
 test_case(pos, "plu",       'plu').
 test_case(pos, "plus",      'plus').
-test_case(pos, "po",        'po').
 test_case(pos, "por",       'por').
 test_case(pos, "post",      'post').
 test_case(pos, "preskaŭ",   'preskaŭ').
 test_case(pos, "preter",     'preter').
 test_case(pos, "pri",       'pri').
 test_case(pos, "pro",       'pro').
-test_case(pos, "ro",        'ro').
-test_case(pos, "se",        'se').
 test_case(pos, "sed",       'sed').
 test_case(pos, "sen",       'sen').
 test_case(pos, "sep",       'sep').
 test_case(pos, "ses",       'ses').
 test_case(pos, "si",        'si').
-test_case(pos, "so",        'so').
 test_case(pos, "sub",       'sub').
 test_case(pos, "super",     'super').
 test_case(pos, "sur",       'sur').
 test_case(pos, "ŝi",        'ŝi').
-test_case(pos, "ŝo",        'ŝo').
-test_case(pos, "tamen",     'tamen').
-test_case(pos, "to",        'to').
 test_case(pos, "tra",       'tra').
 test_case(pos, "trans",     'trans').
 test_case(pos, "tre",       'tre').
 test_case(pos, "tri",       'tri').
 test_case(pos, "tro",       'tro').
 test_case(pos, "tuj",       'tuj').
-test_case(pos, "u",         'u').
 test_case(pos, "unu",       'unu').
-test_case(pos, "ŭo",        'ŭo').
 test_case(pos, "ve",        've').
 test_case(pos, "vi",        'vi').
-test_case(pos, "vo",        'vo').
-test_case(pos, "zo",        'zo').
+
+% --- Section: TINIES COMPOSED ---
+test_case(blank, _, _).
+test_case(info, "TINIES COMPOSED", _).
+% ---
 % composed
-test_case(pos, "praio",     'pra-i-o').
-test_case(pos, "iego",      'i-eg-o').
-test_case(pos, "reieto",    're-i-et-o').
-test_case(pos, "ĉi",        'ĉi').
-test_case(pos, "malĉio",    'mal-ĉi-o').
-test_case(pos, "ĉiego",     'ĉi-eg-o').
-test_case(pos, "reĉieto",   're-ĉi-et-o').
-test_case(pos, "i",         'i').
+test_case(pos, "malankoraŭ", 'mal-ankoraŭ').
+test_case(pos, "malantaŭ",   'mal-antaŭ').
 
 % --- Future/Optional Test Cases (Currently Commented Out) ---
 % test_case(pos, "amaskomunikilo", 'amas-komunik-il-o'). 
@@ -608,6 +776,25 @@ test_case(neg, "in",     fails).
 test_case(neg, "ar",     fails).
 test_case(neg, "ing",    fails).
 
+/*
+% --- Section: SUFFIX "i" (national) ---
+% Words with more official suffixes
+test_case(blank, _, _).
+test_case(info, "SUFFIX i (national)", _).
+% ---
+% --- TEST RADICI NAZIONALI (Paesi: rad-i-o) ---
+test_case(neg, "librio", fails).
+test_case(neg, "domio", fails).
+
+% --- Section: SUFFIX "t" (numeral) ---
+% Words with more official suffixes
+test_case(blank, _, _).
+test_case(info, "SUFFIX t (numeral)", _).
+% ---
+test_case(neg, "deto",  'fails').
+test_case(neg, "ĉirkaŭto",  'fails').
+*/
+
 % --- Section: MORE SUFFIXES ---
 % Words with more official suffixes
 test_case(blank, _, _).
@@ -624,26 +811,6 @@ test_case(neg, "endem",  fails).
 test_case(neg, "etant",  fails).
 test_case(neg, "arer",   fails).
 test_case(neg, "areg",   fails).
-
-% --- Section: MORE PREFIXES AND SUFFIXES ---
-% Words with more official prefixes and suffixes
-test_case(blank, _, _).
-test_case(info, "MORE PREFIXES AND SUFFIXES", _).
-% ---
-test_case(pos, "ĉefanaro",     'ĉef-an-ar-o').
-test_case(pos, "dispraino",    'dis-pra-in-o').
-test_case(pos, "disreigi",     'dis-re-ig-i').
-test_case(pos, "eksboujeco",   'eks-bo-uj-ec-o').
-test_case(pos, "eksejestro",   'eks-ej-estr-o').
-test_case(pos, "geiĝo",        'ge-iĝ-o').
-test_case(pos, "malegeco",     'mal-eg-ec-o').
-test_case(pos, "maleti",       'mal-et-i').
-test_case(pos, "malendema",    'mal-end-em-a').
-test_case(pos, "misetante",    'mis-et-ant-e').
-test_case(pos, "praarego",     'pra-ar-eg-o').
-test_case(pos, "redisenda",    're-dis-end-a').
-test_case(pos, "reegoj",       're-eg-o-j').
-test_case(pos, "reetegindas",  're-et-eg-ind-as').
 
 % --- Section: CORRELATIVES ---
 % These cases about correlatives.
@@ -717,6 +884,114 @@ test_case(neg, "ekstieto",  fail).
 test_case(neg, "neni",      fail).
 test_case(neg, "maltio",    fail).
 test_case(neg, "malkio",    fail).
+
+% --- Section: LETTERS ---
+% Tetst cases about lettere.
+test_case(blank, _, _).
+test_case(info, "LETTERS", _).
+% ---
+% Letter with ending
+test_case(neg, "ao", fails).
+test_case(neg, "boa", fails).
+test_case(neg, "coe", fails).
+test_case(neg, "ĉoa", fails).
+test_case(neg, "doo", fails).
+test_case(neg, "ea", fails).
+test_case(neg, "foo", fails).
+test_case(neg, "goe", fails).
+test_case(neg, "ĝoai", fails).
+test_case(neg, "hoa", fails).
+test_case(neg, "joo", fails).
+test_case(neg, "ĵoa", fails).
+test_case(neg, "ĥoe", fails).
+test_case(neg, "koa", fails).
+test_case(neg, "loo", fails).
+test_case(neg, "moe", fails).
+test_case(neg, "noa", fails).
+test_case(neg, "oa", fails).
+test_case(neg, "poo", fails).
+test_case(neg, "roe", fails).
+test_case(neg, "soa", fails).
+test_case(neg, "ŝoo", fails).
+test_case(neg, "toe", fails).
+test_case(neg, "uo", fails).
+test_case(neg, "ŭoa", fails).
+test_case(neg, "voo", fails).
+test_case(neg, "zoe", fails).
+% Letter with prefix
+test_case(neg, "boa", fails).
+test_case(neg, "prabo", fails).
+test_case(neg, "boco", fails).
+test_case(neg, "malĉo", fails).
+test_case(neg, "redo", fails).
+test_case(neg, "boe", fails).
+test_case(neg, "disfo", fails).
+test_case(neg, "bogo", fails).
+test_case(neg, "eksĝo", fails).
+test_case(neg, "malho", fails).
+test_case(neg, "rejo", fails).
+test_case(neg, "boĵo", fails).
+test_case(neg, "reĥo", fails).
+test_case(neg, "malko", fails).
+test_case(neg, "pralo", fails).
+test_case(neg, "bomo", fails).
+test_case(neg, "malno", fails).
+test_case(neg, "mallo", fails).
+test_case(neg, "malpo", fails).
+test_case(neg, "praro", fails).
+test_case(neg, "reso", fails).
+test_case(neg, "malŝo", fails).
+test_case(neg, "eksto", fails).
+test_case(neg, "bou", fails).
+test_case(neg, "reŭo", fails).
+test_case(neg, "eksvo", fails).
+test_case(neg, "rezo", fails).
+
+% --- Section: INVARIANTS (Negatives) ---
+% Test Desinenza | Test Prefisso
+test_case(blank, _, _).
+test_case(info, "INVARIANTS", _).
+% ---
+% Invariant with ending
+test_case(neg, "almenaŭo", fails).
+test_case(neg, "ankaŭa", fails).
+test_case(neg, "ĉius", fails).
+test_case(neg, "ĉua", fails).
+test_case(neg, "dao", fails).
+test_case(neg, "deso", fails).
+test_case(neg, "eĉa", fails).
+test_case(neg, "hao", fails).
+test_case(neg, "hea", fails).
+test_case(neg, "jaa", fails).
+test_case(neg, "jeo", fails).
+test_case(neg, "juo", fails).
+test_case(neg, "kaja", fails).
+test_case(neg, "keo", fails).
+test_case(neg, "kvankama", fails).
+test_case(neg, "lao", fails).
+test_case(neg, "neko", fails).
+test_case(neg, "sea", fails).
+% Invariant with prefix
+test_case(neg, "malalmenaŭ", fails).
+test_case(neg, "neankaŭ", fails).
+test_case(neg, "reĉar", fails).
+test_case(neg, "boĉi", fails).
+test_case(neg, "ekĉu", fails).
+test_case(neg, "malda", fails).
+test_case(neg, "redes", fails).
+test_case(neg, "boeĉ", fails).
+test_case(neg, "reha", fails).
+test_case(neg, "malhe", fails).
+test_case(neg, "eksja", fails).
+test_case(neg, "malje", fails).
+test_case(neg, "reju", fails).
+test_case(neg, "nekaj", fails).
+test_case(neg, "ekke", fails).
+test_case(neg, "rekvankam", fails).
+test_case(neg, "malla", fails).
+test_case(neg, "bonek", fails).
+test_case(neg, "rese", fails).
+
 % --- Section: MORE ---
 % These cases about correlatives.
 test_case(blank, _, _).
