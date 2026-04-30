@@ -1,5 +1,5 @@
 % -----------------------------------------------------------------
-% File: word.pl
+% File: words.pl
 % Project: Esperanto Morphological Analyzer
 % Section: 0 - Word Level Logic
 % 
@@ -8,27 +8,43 @@
 % It implements the top-level grammar rules defined in Section 0 
 % of the EBNF specification. It coordinates the dispatching of 
 % strings to specific handlers for bound roots, correlatives, 
-% and free roots.
+% free roots, and now individual alphabet letters.
 %
 % Grammar Rules Implemented:
-% - word      = {word_part} word_head 
-% - word_head = free_extended | correlative_extended | bound_extended
+% - word      = word_head | letter
+% - word_head = corr_ext | tiny_ext | root_wrd
 % -----------------------------------------------------------------
 
 % --- External Dependencies Declarations ---
-% These declarations prevent "undefined procedure" errors during compilation
-% Inform Prolog that bound_extended/2 is defined elsewhere
 :- discontiguous root_extended/2.
 :- discontiguous corr_extended/2.
 :- discontiguous tiny_extended/2.
+:- discontiguous letter/2.
+:- discontiguous invar/2.
 
-% Main predicate to validate and segment a word.
-% Now strictly focused on the morphological definition.
+% -----------------------------------------------------------------
+% word/2: Main entry point for word validation.
+% -----------------------------------------------------------------
+% According to EBNF: word = word_head | letter.
+% It first tries to match the input as a complex word head,
+% and if that fails, it checks if it is a single letter name.
+% -----------------------------------------------------------------
+word(CharList, Output) :-
+    letter(CharList, Output),
+    !. % If it is a letter, we stop here.
+
+word(CharList, Output) :-
+    invar(CharList, Output),
+    !. % If it is a letter, we stop here.
+
 word(CharList, Output) :-
     word_head(CharList, Output).
 
-% Section 0: word_head
-% Dispatches the word head to the appropriate morphological category
+% -----------------------------------------------------------------
+% word_head/2: Dispatches to specific morphological categories.
+% -----------------------------------------------------------------
+% Implements: word_head = corr_ext | tiny_ext | root_wrd
+% -----------------------------------------------------------------
 word_head(In, Output) :-
     corr_extended(In, Output),
     !.
