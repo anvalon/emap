@@ -17118,6 +17118,7 @@ zurik
 ĉap
 ĉapel
 ĉapitr
+ĉar
 ĉard
 ĉardaŝ
 ĉarel
