@@ -18,14 +18,16 @@
 % --- Module Imports ---
 % These imports ensure that the file is modular and paths remain 
 % relative to the location of main.pl.
-:- ensure_loaded(format).    % Formatting utilities
-:- ensure_loaded(files).     % File management
-:- ensure_loaded(tails).     % Grammatical endings
-:- ensure_loaded(affixes).   % Recursive prefix and suffix logic
-:- ensure_loaded(tinies).    % Tinies logic
-:- ensure_loaded(corrs).     % Correlative logic
-:- ensure_loaded(roots).     % Root logic
-:- ensure_loaded(words).     % Main word logic
+:- ensure_loaded(format).       % Formatting utilities
+:- ensure_loaded(files).        % File management
+:- ensure_loaded(tails).        % Grammatical endings
+:- ensure_loaded(affixes).      % Recursive prefix and suffix logic
+:- ensure_loaded(tinies).       % Tinies logic
+:- ensure_loaded(correlatives). % Correlative logic
+:- ensure_loaded(roots).        % Root logic
+:- ensure_loaded(letters).      % Letter logic
+:- ensure_loaded(invariants).   % Invariant logic
+:- ensure_loaded(words).        % Main word logic
 
 % -----------------------------------------------------------------
 % analyze/2: Coordination of normalization, analysis, and formatting
